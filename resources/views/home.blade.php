@@ -487,25 +487,6 @@
                         <div class="splide__slide px-4">
                             <div
                                 class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                                <img src="{{ asset('/images/porto-taremakmur.png') }}" class="h-48 object-cover" />
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2 text-white">Management Sales</h3>
-                                    <p class="text-gray-300 mb-4">Sistem Mobile dan Web digunakan untuk manajemen
-                                        transaksi</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 bg-red-600 text-xs rounded-full text-white">Laravel</span>
-                                        <span
-                                            class="px-3 py-1 bg-green-600 text-xs rounded-full text-white">Kotlin</span>
-                                        <span
-                                            class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">MySQL</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="splide__slide px-4">
-                            <div
-                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
                                 <img src="{{ asset('/images/porto-epo.png') }}" class="h-48 object-cover" />
                                 <div class="p-6">
                                     <h3 class="text-xl font-semibold mb-2 text-white">Electronics PO</h3>
