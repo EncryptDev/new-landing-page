@@ -26,7 +26,7 @@
     <link rel="canonical" href="https://encryptdigital.com">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="{{ asset("/images/icon.png") }}">
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
