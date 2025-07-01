@@ -791,9 +791,11 @@
 
                 <!-- Kolom 2: Navigasi -->
                 <div>
-                    <h3 class="text-lg font-semibold text-white">Navigasi</h3>
+                    <h3 class="text-lg font-semibold text-white">Contact</h3>
                     <ul class="mt-2 space-y-2">
-                        <li><a href="#" class="transition hover:text-white">Beranda</a></li>
+                        <li><i class="fa-solid fa-phone me-2"></i><a href="#" class="transition hover:text-white">0851-7110-6025</a></li>
+                        <li><i class="fa-solid fa-envelope me-2"></i><a href="#" class="transition hover:text-white">client@encryptdev.com</a></li>
+                        <li><i class="fa-solid fa-location-dot me-2"></i><a href="#" class="transition hover:text-white">Dsn Karang Nongko Ds Mojoranu, Sooko, Mojokerto</a></li>
                         {{-- <li><a href="#" class="transition hover:text-white">Tentang Kami</a></li>
                         <li><a href="#" class="transition hover:text-white">Layanan</a></li>
                         <li><a href="#" class="transition hover:text-white">Kontak</a></li> --}}
