@@ -4,22 +4,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Encrypt Digital Solution</title>
+    <title>Encrypt Digital Solution | Software House Terdepan di Indonesia</title>
+    <meta name="description"
+        content="Encrypt Digital Solution adalah software house terpercaya yang menyediakan solusi digital inovatif untuk bisnis Anda. Dapatkan aplikasi web, mobile, dan sistem enterprise terbaik.">
+    <meta name="keywords"
+        content="software house, web development, mobile app, sistem enterprise, digital solution, encrypt digital">
+    <meta name="author" content="Encrypt Digital Solution">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Encrypt Digital Solution | Software House Terdepan">
+    <meta property="og:description" content="Solusi digital terpercaya untuk transformasi bisnis Anda">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://encryptdigital.com">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Encrypt Digital Solution">
+    <meta name="twitter:description" content="Software house terpercaya untuk solusi digital bisnis">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://encryptdigital.com">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Encrypt Digital Solution",
+        "description": "Software house terpercaya yang menyediakan solusi digital inovatif",
+        "url": "https://encryptdigital.com",
+        "logo": "https://encryptdigital.com/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+62 851 7110 6025",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+
+
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script src="https://kit.fontawesome.com/a627a75623.js" crossorigin="anonymous"></script>
     <script src="//unpkg.com/alpinejs" defer></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/splide.min.css') }}">
     <style>
-        .swiper {
-            width: 100%;
-            height: 100%;
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
-        .swiper-slide2 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes pulse-slow {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .gradient-bg {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse-slow {
+            animation: pulse-slow 4s ease-in-out infinite;
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -33,12 +125,11 @@
             <div class="w-full px-6 max-w-none lg:px-0">
                 <h1 class="font-bold text-3xl/snug lg:text-5xl/normal ">Buat Software Untuk Optimasi Bisnis Anda, <span
                         class="px-4 py-2 text-white bg-yellow-400">Dalam Sekejap</span></h1>
-                <p class="mt-5 text-base font-normal text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing
-                    elit. Labore, repellat! Veniam quisquam, consectetur dicta sequi autem quasi laboriosam vero
-                    dolores.</p>
+                <p class="mt-5 text-base font-normal text-gray-500">Kami bantu Anda membangun software custom yang
+                    sesuai kebutuhan bisnis, tanpa proses rumit dan dalam waktu yang jauh lebih singkat.</p>
 
                 <!-- Button Contact -->
-                <p class="mt-10 text-xs font-semibold text-black">Hubungi Kami Untuk Konsultasi Secara Gratis</p>
+                <p class="mt-10 mb-4 text-xs font-semibold text-black">Hubungi Kami Untuk Konsultasi Secara Gratis</p>
                 <div class="flex ">
                     <input
                         class="tracking-tight  bg-white max-w-sm border-[0.2rem] w-full rounded-l-md  border-blue-500"
@@ -50,7 +141,7 @@
             </div>
 
             <div class="hidden lg:block">
-                <img src="{{ asset('images/hero-img.png') }}" class="h-auto w-4xl">
+                <img src="{{ asset('images/final hero.png') }}" class="h-auto w-4xl">
             </div>
         </div>
 
@@ -79,8 +170,8 @@
         <div class="text-white text-3xl/normal lg:text-5xl/snug max-w-[40rem] font-black text-center mx-auto"><span
                 class="underline">Mulai
                 Coba</span> Dengan Salah Satu <span class="py-1 text-black bg-white">Layanan Kami</span></div>
-        <p class="max-w-xl mx-auto mt-5 font-thin text-center text-white">Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Consequatur pariatur ullam eius laboriosam inventore qui dolores iusto magni iste totam.
+        <p class="max-w-xl mx-auto mt-5 font-thin text-center text-white">Mulailah dari layanan yang paling cocok dengan
+            kebutuhan Anda saat ini, dan biarkan teknologi kami bekerja mempermudah langkah Anda berikutnya.
         </p>
 
         <div class="flex justify-center mt-12">
@@ -91,47 +182,40 @@
         <div class="grid justify-center max-w-6xl grid-cols-2 gap-4 mx-auto mt-10 lg:mt-20 lg:flex lg:gap-6">
 
             <div class="w-full text-center bg-white rounded-md shadow-2xl lg:max-w-sm shadow-sky-300">
-                <img class="object-cover w-full h-40 max-w-md rounded-t-md"
-                    src="https://eosteknologi.com/wp-content/uploads/2020/08/Rekomendasi-Konsultan-IT-di-Jakarta-1200x850.jpg"
+                <img class="object-cover w-full h-40 max-w-md rounded-t-md" src="{{ asset('images/card-consult.png') }}"
                     alt="">
-                <div class="p-2 bg-white lg:p-6 rounded-b-md min-h-40">
+                <div class="p-2 bg-white lg:p-6 rounded-b-md h-48">
                     <h1 class="text-base font-bold text-black lg:font-black lg:text-2xl">IT Consultation</h1>
-                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Lorem, ipsum dolor sit amet consectetur
-                        adipisicing
-                        elit. </p>
+                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Bantu bisnis Anda menemukan solusi IT
+                        yang tepat dan efisien.</p>
                 </div>
             </div>
-            <div class="w-full text-center shadow-2xl lg:max-w-sm shadow-amber-300">
+            <div class="w-full bg-white rounded-md text-center shadow-2xl lg:max-w-sm shadow-amber-300">
                 <img class="object-cover w-full h-40 max-w-md rounded-t-md"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRepoJ-iIVAQDQbBbp__qmmYPPmm84a2wO2pg&s"
-                    alt="">
-                <div class="p-2 bg-white lg:p-6 rounded-b-md min-h-40">
+                    src="{{ asset('images/card-software.jpeg') }}" alt="">
+                <div class="p-2  bg-white lg:p-6 rounded-b-md h-48">
                     <h1 class="text-base font-bold text-black lg:text-2xl lg:font-black">Software Development</h1>
-                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Lorem, ipsum dolor sit amet consectetur
-                        adipisicing
-                        elit. </p>
+                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Bangun aplikasi custom sesuai kebutuhan
+                        bisnis Anda. </p>
                 </div>
             </div>
-            <div class="w-full text-center shadow-2xl lg:max-w-sm shadow-violet-400">
+            <div class="w-full bg-white rounded-md text-center shadow-2xl lg:max-w-sm shadow-violet-400">
                 <img class="object-cover w-full h-40 max-w-md rounded-t-md"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ38mhdTgQ41qfSSlhBSE1sBCbUDaq7BOcsZg&s"
-                    alt="">
-                <div class="p-2 bg-white lg:p-6 rounded-b-md min-h-40">
+                    src="{{ asset('images/card-website.jpeg') }}" alt="">
+                <div class="p-2 bg-white lg:p-6 rounded-b-md h-48">
                     <h1 class="text-base font-bold text-black lg:text-2xl lg:font-black">Website Development</h1>
-                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Lorem, ipsum dolor sit amet consectetur
-                        adipisicing
-                        elit. </p>
+                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Buat website profesional untuk
+                        meningkatkan citra dan kepercayaan.</p>
                 </div>
             </div>
             <div class="w-full h-full text-center bg-white rounded-md shadow-2xl lg:max-w-sm shadow-emerald-300">
-                <img class="object-cover w-full h-40 max-w-md rounded-t-md"
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlKb4A0XkFvyBcr4PgL6D6T4JMEM_NzQhIJiBaxa-vGexwWSv79dYYzEIh53TzL29fS3g&usqp=CAU"
+                <img class="object-cover w-full h-40 max-w-md rounded-t-md" src="{{ asset('images/card-iot.jpeg') }}"
                     alt="">
-                <div class="p-2 bg-white lg:p-6 rounded-b-md min-h-40">
+                <div class="p-2 bg-white lg:p-6 rounded-b-md h-48">
                     <h1 class="text-base font-bold text-black lg:text-2xl lg:font-black">IoT</h1>
-                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Lorem, ipsum dolor sit amet consectetur
-                        adipisicing
-                        elit. </p>
+                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Otomatisasi bisnis Anda dengan
+                        perangkat
+                        pintar dan data real-time. </p>
                 </div>
             </div>
         </div>
@@ -218,14 +302,15 @@
                     <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Dokumentasi</p>
                 </div>
                 <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Training Penggunaan
+                    <p class="font-semibold text-black"><i class="fa-solid fa-person-chalkboard me-2"></i>Training
+                        Penggunaan
                         Software</p>
                 </div>
                 <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Maintenance</p>
+                    <p class="font-semibold text-black"><i class="fa-solid fa-wrench me-2"></i></i>Maintenance</p>
                 </div>
                 <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Integration</p>
+                    <p class="font-semibold text-black"><i class="fa-solid fa-link me-2"></i>Integration</p>
                 </div>
             </div>
             <div class="max-w-6xl mx-auto mt-12 shadow-xl">
@@ -251,13 +336,13 @@
                     </p>
                 </div>
                 <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>SEO</p>
+                    <p class="font-semibold text-black"><i class="fa-solid fa-magnifying-glass me-2"></i>SEO</p>
                 </div>
                 <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Desain Menarik</p>
+                    <p class="font-semibold text-black"><i class="fa-solid fa-pen-nib me-2"></i>Desain Menarik</p>
                 </div>
                 <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Ringan dan Cepat</p>
+                    <p class="font-semibold text-black"><i class="fa-solid fa-feather me-2"></i>Ringan dan Cepat</p>
                 </div>
             </div>
             <div class="max-w-6xl mx-auto mt-12 shadow-xl">
@@ -287,7 +372,7 @@
                     <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Dokumentasi</p>
                 </div>
                 <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Harga Bersaing</p>
+                    <p class="font-semibold text-black"><i class="fa-solid fa-money-bill me-2"></i>Harga Bersaing</p>
                 </div>
             </div>
             <div class="max-w-6xl mx-auto mt-12 shadow-xl">
@@ -298,79 +383,310 @@
 
     </section>
 
-    <!-- Recent Project -->
-    <section class="py-10 lg:py-20 bg-gradient-to-l from-blue-500 to-emerald-400">
-        <div class="max-w-6xl mx-auto">
-            <h1 class="text-3xl font-black text-center text-white lg:text-5xl">Saksikanlah Beberapa Project Yang Kami
-                Kerjakan</h1>
 
+    <!-- End Of Reccent Project -->
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2
+                    class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    Project Portfolio
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Berbagai project sukses yang telah kami kerjakan untuk klien dari berbagai industri
+                </p>
+            </div>
             <!-- Project Card -->
+            <div class="mx-auto splide">
+                <div class="splide__track">
+                    <div class="splide__list">
+                        <div class="splide__slide px-4">
+                            <div
+                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                <img src="{{ asset('/images/porto-taremakmur.png') }}" class="h-48 object-cover" />
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2 text-white">Management Sales</h3>
+                                    <p class="text-gray-300 mb-4">Sistem Mobile dan Web digunakan untuk manajemen
+                                        transaksi</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-3 py-1 bg-red-600 text-xs rounded-full text-white">Laravel</span>
+                                        <span
+                                            class="px-3 py-1 bg-green-600 text-xs rounded-full text-white">Kotlin</span>
+                                        <span
+                                            class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">MySQL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="splide__slide px-4">
+                            <div
+                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                <div
+                                    class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                                    <span class="text-2xl font-bold text-white">AI</span>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2 text-white">AI Self Learning</h3>
+                                    <p class="text-gray-300 mb-4">Sejenis chatbot lokal offline untuk membantu proses
+                                        tanya jawab</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-3 py-1 bg-blue-600 text-xs rounded-full text-white">Next.Js</span>
+                                        <span class="px-3 py-1 bg-green-600 text-xs rounded-full text-white">Fast
+                                            Api</span>
+                                        <span class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">Postgre
+                                            SQL</span>
+                                    </div>
+                                </div>
+                            </div>
 
-            <div wire:ignore class="max-w-6xl mt-12 swiper mySwiper">
-                <div class="mx-auto swiper-wrapper">
-                    <div class="swiper-slide swiper-slide2">
-                        <div class="relative">
-                            <img class=" object-cover w-[20rem] h-[22rem] rounded-xl"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWxBx2cYdRyhhfJlp1eHSTrTAM5xAkV0rlHQ&s"
-                                alt="">
+                        </div>
+                        <div class="splide__slide px-4">
                             <div
-                                class="absolute inset-0 z-10 flex flex-col justify-end px-6 pb-6 w-[20rem] bg-black/50 rounded-xl">
-                                <p class="text-2xl font-bold text-white">Project Title</p>
-                                <p class="text-white ">Sort Description of the project in here</p>
-                                <a href="" class="mt-3 font-semibold text-white underline">Selengkapnya</a>
+                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                <img src="{{ asset('/images/porto-naima.png') }}" class="h-48 object-cover" />
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2 text-white">Landing Page</h3>
+                                    <p class="text-gray-300 mb-4">Landing Page untuk sebuah company dengan Blog, Jobs,
+                                        dan lainnya</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-3 py-1 bg-red-600 text-xs rounded-full text-white">Laravel</span>
+                                        <span
+                                            class="px-3 py-1 bg-green-600 text-xs rounded-full text-white">FrankenPhp</span>
+                                        <span
+                                            class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">MySQL</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide swiper-slide2">
-                        <div class="relative">
-                            <img class=" object-cover w-[20rem] h-[22rem] rounded-xl"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWxBx2cYdRyhhfJlp1eHSTrTAM5xAkV0rlHQ&s"
-                                alt="">
+                        <div class="splide__slide px-4">
                             <div
-                                class="absolute inset-0 z-10 flex flex-col justify-end px-6 pb-6 w-[20rem] bg-black/50 rounded-xl">
-                                <p class="text-2xl font-bold text-white">Project Title</p>
-                                <p class="text-white ">Sort Description of the project in here</p>
-                                <a href="" class="mt-3 font-semibold text-white underline">Selengkapnya</a>
+                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                <div
+                                    class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                                    <span class="text-2xl font-bold text-white">IoT</span>
+                                </div>
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2 text-white">Auto Scan</h3>
+                                    <p class="text-gray-300 mb-4">Aplikasi scan otomatis barcode yang sedang berjalan
+                                        untuk stock system</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-3 py-1 bg-blue-600 text-xs rounded-full text-white">Next.js</span>
+                                        <span
+                                            class="px-3 py-1 bg-green-600 text-xs rounded-full text-white">MySql</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="swiper-slide swiper-slide2">
-                        <div class="relative">
-                            <img class=" object-cover w-[20rem] h-[22rem] rounded-xl"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWxBx2cYdRyhhfJlp1eHSTrTAM5xAkV0rlHQ&s"
-                                alt="">
-                            <div
-                                class="absolute inset-0 z-10 flex flex-col justify-end px-6 pb-6 w-[20rem] bg-black/50 rounded-xl">
-                                <p class="text-2xl font-bold text-white">Project Title</p>
-                                <p class="text-white ">Sort Description of the project in here</p>
-                                <a href="" class="mt-3 font-semibold text-white underline">Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide swiper-slide2">
-                        <div class="relative">
-                            <img class=" object-cover w-[20rem] h-[22rem] rounded-xl"
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWxBx2cYdRyhhfJlp1eHSTrTAM5xAkV0rlHQ&s"
-                                alt="">
-                            <div
-                                class="absolute inset-0 z-10 flex flex-col justify-end px-6 pb-6 w-[20rem] bg-black/50 rounded-xl">
-                                <p class="text-2xl font-bold text-white">Project Title</p>
-                                <p class="text-white ">Sort Description of the project in here</p>
-                                <a href="" class="mt-3 font-semibold text-white underline">Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
 
-
+                        <div class="splide__slide px-4">
+                            <div
+                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                <img src="{{ asset('/images/porto-taremakmur.png') }}" class="h-48 object-cover" />
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2 text-white">Management Sales</h3>
+                                    <p class="text-gray-300 mb-4">Sistem Mobile dan Web digunakan untuk manajemen
+                                        transaksi</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-3 py-1 bg-red-600 text-xs rounded-full text-white">Laravel</span>
+                                        <span
+                                            class="px-3 py-1 bg-green-600 text-xs rounded-full text-white">Kotlin</span>
+                                        <span
+                                            class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">MySQL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="splide__slide px-4">
+                            <div
+                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                <img src="{{ asset('/images/porto-epo.png') }}" class="h-48 object-cover" />
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2 text-white">Electronics PO</h3>
+                                    <p class="text-gray-300 mb-4">Sistem untuk e-sign dan kirim purchase order via
+                                        email ke supplier secara otomatis</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-3 py-1 bg-red-600 text-xs rounded-full text-white">Laravel</span>
+                                        <span
+                                            class="px-3 py-1 bg-pink-600 text-xs rounded-full text-white">Livewire</span>
+                                        <span
+                                            class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">MySQL</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                {{-- <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div> --}}
-                <div class="swiper-pagination"></div>
             </div>
         </div>
-
     </section>
-    <!-- End Of Reccent Project -->
+
+    <!-- Happy Clients Section -->
+    <section id="clients" class="py-20 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2
+                    class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    Klien Bahagia
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Testimoni dari klien yang telah merasakan manfaat solusi digital kami
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-6 glass-effect rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-lg font-bold">ID</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Indra</h4>
+                            <p class="text-sm text-gray-400">Taremakmur</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Encrypt Digital Solution memberikan solusi yang sempurna untuk
+                        digitalisasi bisnis kami. Highly recommended!"</p>
+                    <div class="flex mt-4">
+                        <span class="text-yellow-400">★★★★★</span>
+                    </div>
+                </div>
+
+                <div class="p-6 glass-effect rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-lg font-bold">KH</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Khoiron</h4>
+                            <p class="text-sm text-gray-400">Janji Kembali</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Tim yang sangat profesional dan hasil yang memuaskan."</p>
+                    <div class="flex mt-4">
+                        <span class="text-yellow-400">★★★★★</span>
+                    </div>
+                </div>
+
+                <div class="p-6 glass-effect rounded-lg">
+                    <div class="flex items-center mb-4">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-lg font-bold">DG</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-white">Faisal</h4>
+                            <p class="text-sm text-gray-400">Naim</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"Kualitas code dan dokumentasi yang sangat baik. Maintenance jadi
+                        lebih mudah dan sistem berjalan sangat stabil."</p>
+                    <div class="flex mt-4">
+                        <span class="text-yellow-400">★★★★★</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Client Statistics -->
+            <div class="grid md:grid-cols-4 gap-8 mt-16">
+                <div class="text-center">
+                    <div
+                        class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-2">
+                        50+</div>
+                    <p class="text-gray-300">Project Selesai</p>
+                </div>
+                <div class="text-center">
+                    <div
+                        class="text-4xl font-bold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent mb-2">
+                        98%</div>
+                    <p class="text-gray-300">Kepuasan Klien</p>
+                </div>
+                <div class="text-center">
+                    <div
+                        class="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent mb-2">
+                        4+</div>
+                    <p class="text-gray-300">Tahun Pengalaman</p>
+                </div>
+                <div class="text-center">
+                    <div
+                        class="text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-2">
+                        24/7</div>
+                    <p class="text-gray-300">Support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2
+                    class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+                    Perjalanan Kami
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Milestone penting dalam perjalanan Encrypt Digital Solution
+                </p>
+            </div>
+
+            <div class="relative">
+                <!-- Timeline Line -->
+                <div
+                    class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-600">
+                </div>
+
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="glass-effect p-6 rounded-lg">
+                                <h3 class="text-xl font-semibold mb-2 text-white">2021 - Founding</h3>
+                                <p class="text-gray-300">Pertama kali dengan nama Encrypt Multimedia khusus untuk
+                                    menangani percetakan dan konten Multimedia</p>
+                            </div>
+                        </div>
+                        <div class="w-4 h-4 bg-blue-500 rounded-full relative z-10 flex-shrink-0"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-4 h-4 bg-green-500 rounded-full relative z-10 flex-shrink-0"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="glass-effect p-6 rounded-lg">
+                                <h3 class="text-xl font-semibold mb-2 text-white">2022 - Changing Focus</h3>
+                                <p class="text-gray-300">Berganti fokus dan nama menjadi EncryptDev. Berfokus untuk
+                                    melayani Solusi IT untuk Bisnis</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="glass-effect p-6 rounded-lg">
+                                <h3 class="text-xl font-semibold mb-2 text-white">2024 - Legality</h3>
+                                <p class="text-gray-300">EncryptDev sekarang berada di bawah PT Encrypt Digital
+                                    Solution. Untuk siap menjalin kerja sama lebih luas dan professional</p>
+                            </div>
+                        </div>
+                        <div class="w-4 h-4 bg-purple-500 rounded-full relative z-10 flex-shrink-0"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Our Team Section -->
     <section class="py-12 bg-white">
@@ -384,7 +700,7 @@
                         class="fa-solid fa-phone-volume me-2"></i>Book a Call</button>
             </div>
             <!-- Team Section -->
-            <div class="flex flex-wrap justify-center gap-2 mt-12 lg:gap-4 lg:flex-nowrap">
+            <div class="flex flex-wrap justify-center gap-2 mt-12 lg:gap-4 ">
                 <!-- Team Card -->
                 <div class="relative w-44 lg:w-56 h-72">
                     <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
@@ -412,7 +728,7 @@
                     <div
                         class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
                         <p class="text-base font-semibold text-black lg:text-lg">Dugi Mulio</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">UI/UX Designer</p>
+                        <p class="text-xs font-light text-gray-600 lg:text-sm">System Analys</p>
                     </div>
                 </div>
                 <!-- Team Card -->
@@ -428,171 +744,38 @@
                 <!-- Team Card -->
                 <div class="relative w-44 lg:w-56 h-72">
                     <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
+                        src="{{ asset('images/anas.png') }}" alt="Team Profile">
+                    <div
+                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
+                        <p class="text-base font-semibold text-black lg:text-lg">Pirgianas</p>
+                        <p class="text-xs font-light text-gray-600 lg:text-sm">UI/UX Designer</p>
+                    </div>
+                </div>
+                <!-- Team Card -->
+                {{-- <div class="relative w-44 lg:w-56 h-72">
+                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
+                        src="{{ asset('images/adishtya.jpeg') }}" alt="Team Profile">
+                    <div
+                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
+                        <p class="text-base font-semibold text-black lg:text-lg">Dwi Adishtya</p>
+                        <p class="text-xs font-light text-gray-600 lg:text-sm">General Affair</p>
+                    </div>
+                </div> --}}
+                {{-- <!-- Team Card -->
+                <div class="relative w-44 lg:w-56 h-72">
+                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
                         src="{{ asset('images/azas.jpg') }}" alt="Team Profile">
                     <div
                         class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
                         <p class="text-base font-semibold text-black lg:text-lg">Azas Nur</p>
                         <p class="text-xs font-light text-gray-600 lg:text-sm">Head Marketing</p>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </section>
     <!-- End Our Team Section -->
 
-    <!-- Testimonials Section -->
-    <section class="py-20 bg-bgsecondary">
-        <p class="text-base font-semibold text-center text-indigo-500">Testimonials</p>
-        <h1 class="mt-4 font-bold text-center text-gray-800 text-4xl/tight">Kami Peduli Dengan Kepuasan Pelanggan Kami
-        </h1>
-        <div class="max-w-6xl mx-auto mt-12">
-
-            <div wire:ignore class="max-w-6xl px-20 mt-12 swiper mySwiper2">
-                <div class="mx-auto swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div
-                            class="flex flex-col items-center mx-auto bg-white rounded-lg shadow-2xl lg:gap-6 w-sm lg:max-w-sm lg:min-w-lg lg:flex-row pe-2">
-                            <img class="object-cover lg:rounded-l-lg w-sm h-44 lg:rounded-r-2xl"
-                                src="{{ asset('images/dugi.jpg') }}" alt="Comment">
-                            <div class="py-2 text-center lg:text-left">
-                                <p class="text-lg font-semibold text-black underline lg:text-base">Dugi Mulio</p>
-                                <p class="text-sm font-light text-gray-600 ">PT Semeru Abadi Jaya</p>
-                                <p class="mt-2 text-sm text-black lg:mt-0">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus voluptas eos natus
-                                    quo esse nobis quibusdam eligendi quos omnis quas.
-                                </p>
-                                <!-- Star Rating -->
-                                <div class="flex items-center justify-center mt-4 lg:justify-normal">
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-gray-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="swiper-slide">
-                        <div
-                            class="flex flex-col items-center mx-auto bg-white rounded-lg shadow-2xl lg:gap-6 w-sm lg:max-w-sm lg:min-w-lg lg:flex-row pe-2">
-                            <img class="object-cover lg:rounded-l-lg w-sm h-44 lg:rounded-r-2xl"
-                                src="{{ asset('images/dugi.jpg') }}" alt="Comment">
-                            <div class="py-2 text-center lg:text-left">
-                                <p class="text-lg font-semibold text-black underline lg:text-base">Dugi Mulio</p>
-                                <p class="text-sm font-light text-gray-600 ">PT Semeru Abadi Jaya</p>
-                                <p class="mt-2 text-sm text-black lg:mt-0">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus voluptas eos natus
-                                    quo esse nobis quibusdam eligendi quos omnis quas.
-                                </p>
-                                <!-- Star Rating -->
-                                <div class="flex items-center justify-center mt-4 lg:justify-normal">
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-gray-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="swiper-slide">
-                        <div
-                            class="flex flex-col items-center mx-auto bg-white rounded-lg shadow-2xl lg:gap-6 w-sm lg:max-w-sm lg:min-w-lg lg:flex-row pe-2">
-                            <img class="object-cover lg:rounded-l-lg w-sm h-44 lg:rounded-r-2xl"
-                                src="{{ asset('images/dugi.jpg') }}" alt="Comment">
-                            <div class="py-2 text-center lg:text-left">
-                                <p class="text-lg font-semibold text-black underline lg:text-base">Dugi Mulio</p>
-                                <p class="text-sm font-light text-gray-600 ">PT Semeru Abadi Jaya</p>
-                                <p class="mt-2 text-sm text-black lg:mt-0">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus voluptas eos natus
-                                    quo esse nobis quibusdam eligendi quos omnis quas.
-                                </p>
-                                <!-- Star Rating -->
-                                <div class="flex items-center justify-center mt-4 lg:justify-normal">
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                    <svg class="w-4 h-4 text-gray-300 ms-1" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                                        <path
-                                            d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-            </div>
-
-        </div>
-
-
-
-    </section>
-    <!-- End of Testimonials Section -->
 
     <footer class="py-10 text-gray-300 bg-gray-900">
         <div class="container px-6 mx-auto md:px-12">
@@ -600,7 +783,7 @@
 
                 <!-- Kolom 1: Logo & Deskripsi -->
                 <div>
-                    <h2 class="text-2xl font-bold text-white">BrandName</h2>
+                    <h2 class="text-2xl font-bold text-white">PT Encrypt Digital Solution</h2>
                     <p class="mt-2 text-sm text-gray-400">
                         Solusi terbaik untuk kebutuhan digital Anda. Kami menghadirkan inovasi dalam setiap layanan.
                     </p>
@@ -611,9 +794,9 @@
                     <h3 class="text-lg font-semibold text-white">Navigasi</h3>
                     <ul class="mt-2 space-y-2">
                         <li><a href="#" class="transition hover:text-white">Beranda</a></li>
-                        <li><a href="#" class="transition hover:text-white">Tentang Kami</a></li>
+                        {{-- <li><a href="#" class="transition hover:text-white">Tentang Kami</a></li>
                         <li><a href="#" class="transition hover:text-white">Layanan</a></li>
-                        <li><a href="#" class="transition hover:text-white">Kontak</a></li>
+                        <li><a href="#" class="transition hover:text-white">Kontak</a></li> --}}
                     </ul>
                 </div>
 
@@ -621,18 +804,19 @@
                 <div>
                     <h3 class="text-lg font-semibold text-white">Ikuti Kami</h3>
                     <div class="flex mt-3 space-x-4">
-                        <a href="#" class="text-gray-400 transition hover:text-white">
+                        {{-- <a href="#" class="text-gray-400 transition hover:text-white">
                             <i class="text-xl fab fa-facebook"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 transition hover:text-white">
+                        </a> --}}
+                        {{-- <a href="#" class="text-gray-400 transition hover:text-white">
                             <i class="text-xl fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 transition hover:text-white">
+                        </a> --}}
+                        <a href="https://www.instagram.com/encryptdevdigital/"
+                            class="text-gray-400 transition hover:text-white">
                             <i class="text-xl fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="text-gray-400 transition hover:text-white">
+                        {{-- <a href="#" class="text-gray-400 transition hover:text-white">
                             <i class="text-xl fab fa-linkedin"></i>
-                        </a>
+                        </a> --}}
                     </div>
                 </div>
 
@@ -652,7 +836,7 @@
 
             <!-- Copyright -->
             <div class="pt-5 mt-10 text-sm text-center text-gray-400 border-t border-gray-800">
-                © 2025 BrandName. All Rights Reserved.
+                © 2025 EncryptDev. All Rights Reserved.
             </div>
         </div>
     </footer>
@@ -662,53 +846,29 @@
     <script src="../../node_modules/fowbite/dist/flowbite.min.js"></script>
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="{{ asset('js/splide.min.js') }}"></script>
 <script>
-    var swiper = new Swiper(".mySwiper", {
-        spaceBetween: 30,
-        slidesPerView: 1,
-        centeredSlides: true,
-        centeredSlidesBounds: true,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
+    var splide = new Splide('.splide', {
+        perPage: 3,
         breakpoints: {
-            1024: {
-                slidesPerView: 3,
+            640: {
+                perPage: 1
             }
         }
     });
-    var swiper = new Swiper(".mySwiper2", {
-        slidesPerView: 1,
-        centeredSlides: true,
-        centeredSlidesBounds: true,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
+
+    splide.mount();
+
+    var splide2 = new Splide('#splideTesti', {
+        perPage: 2,
         breakpoints: {
-            1024: {
-                slidesPerView: 2,
+            640: {
+                perPage: 1
             }
         }
     });
+
+    splide2.mount();
 </script>
 
 </html>
