@@ -26,7 +26,7 @@
     <link rel="canonical" href="https://encryptdigital.com">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset("/images/icon.png") }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('/images/icon.png') }}">
 
     <!-- Schema.org JSON-LD -->
     <script type="application/ld+json">
@@ -629,6 +629,8 @@
     <!-- Timeline Section -->
     <section id="timeline" class="py-20 bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
             <div class="text-center mb-16">
                 <h2
                     class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
@@ -639,52 +641,69 @@
                 </p>
             </div>
 
-            <div class="relative">
-                <!-- Timeline Line -->
-                <div
-                    class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 to-purple-600">
-                </div>
-
-                <!-- Timeline Items -->
-                <div class="space-y-12">
+            <ol class="items-center sm:flex">
+                <li class="relative mb-6 sm:mb-0">
                     <div class="flex items-center">
-                        <div class="w-1/2 pr-8 text-right">
-                            <div class="glass-effect p-6 rounded-lg">
-                                <h3 class="text-xl font-semibold mb-2 text-white">2021 - Founding</h3>
-                                <p class="text-gray-300">Pertama kali dengan nama Encrypt Multimedia khusus untuk
+                        <div
+                            class="z-10 flex items-center justify-center w-6 h-6  rounded-full ring-0  bg-blue-900 sm:ring-8 ring-gray-900 shrink-0">
+                            <svg class="w-2.5 h-2.5  text-blue-300" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                            </svg>
+                        </div>
+                        <div class="hidden sm:flex w-full  h-0.5 bg-gray-700"></div>
+                    </div>
+                    <div class="mt-3 sm:pe-8">
+                        <h3 class="text-lg font-semibold  text-white">Pertama Beroperasi</h3>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none  text-gray-500">3 Maret 2021</time>
+                        <p class="text-base font-normal  text-gray-400">Pertama kali dengan nama Encrypt Multimedia khusus untuk
                                     menangani percetakan dan konten Multimedia</p>
-                            </div>
-                        </div>
-                        <div class="w-4 h-4 bg-blue-500 rounded-full relative z-10 flex-shrink-0"></div>
-                        <div class="w-1/2 pl-8"></div>
                     </div>
-
+                </li>
+                <li class="relative mb-6 sm:mb-0">
                     <div class="flex items-center">
-                        <div class="w-1/2 pr-8"></div>
-                        <div class="w-4 h-4 bg-green-500 rounded-full relative z-10 flex-shrink-0"></div>
-                        <div class="w-1/2 pl-8">
-                            <div class="glass-effect p-6 rounded-lg">
-                                <h3 class="text-xl font-semibold mb-2 text-white">2022 - Changing Focus</h3>
-                                <p class="text-gray-300">Berganti fokus dan nama menjadi EncryptDev. Berfokus untuk
+                        <div
+                            class="z-10 flex items-center justify-center w-6 h-6 rounded-full ring-0  bg-blue-900 sm:ring-8 ring-gray-900 shrink-0">
+                            <svg class="w-2.5 h-2.5  text-blue-300" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                            </svg>
+                        </div>
+                        <div class="hidden sm:flex w-full  h-0.5 bg-gray-700"></div>
+                    </div>
+                    <div class="mt-3 sm:pe-8">
+                        <h3 class="text-lg font-semibold  text-white">Changing Focus</h3>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none  text-gray-500">21 Januari 2022</time>
+                        <p class="text-base font-normal  text-gray-400">Berganti fokus dan nama menjadi EncryptDev. Berfokus untuk
                                     melayani Solusi IT untuk Bisnis</p>
-                            </div>
-                        </div>
                     </div>
-
+                </li>
+                <li class="relative mb-6 sm:mb-0">
                     <div class="flex items-center">
-                        <div class="w-1/2 pr-8 text-right">
-                            <div class="glass-effect p-6 rounded-lg">
-                                <h3 class="text-xl font-semibold mb-2 text-white">2024 - Legality</h3>
-                                <p class="text-gray-300">EncryptDev sekarang berada di bawah PT Encrypt Digital
-                                    Solution. Untuk siap menjalin kerja sama lebih luas dan professional</p>
-                            </div>
+                        <div
+                            class="z-10 flex items-center justify-center w-6 h-6  rounded-full ring-0  bg-blue-900 sm:ring-8 ring-gray-900 shrink-0">
+                            <svg class="w-2.5 h-2.5 text-blue-800 dark:text-blue-300" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                            </svg>
                         </div>
-                        <div class="w-4 h-4 bg-purple-500 rounded-full relative z-10 flex-shrink-0"></div>
-                        <div class="w-1/2 pl-8"></div>
+                        <div class="hidden sm:flex w-full  h-0.5 bg-gray-700"></div>
                     </div>
+                    <div class="mt-3 sm:pe-8">
+                        <h3 class="text-lg font-semibold  text-white">Legality</h3>
+                        <time
+                            class="block mb-2 text-sm font-normal leading-none  text-gray-500">12 December 2024</time>
+                        <p class="text-base font-normal  text-gray-400">EncryptDev sekarang berada di bawah PT Encrypt Digital
+                                    Solution. Untuk siap menjalin kerja sama lebih luas dan professional</p>
+                    </div>
+                </li>
+            </ol>
 
-                </div>
-            </div>
         </div>
     </section>
 
