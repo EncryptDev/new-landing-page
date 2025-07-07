@@ -15,7 +15,7 @@
     <meta property="og:title" content="Encrypt Digital Solution | Software House Terdepan">
     <meta property="og:description" content="Solusi digital terpercaya untuk transformasi bisnis Anda">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://encryptdigital.com">
+    <meta property="og:url" content="https://encryptdev.com">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
@@ -23,7 +23,7 @@
     <meta name="twitter:description" content="Software house terpercaya untuk solusi digital bisnis">
 
     <!-- Canonical URL -->
-    <link rel="canonical" href="https://encryptdigital.com">
+    <link rel="canonical" href="https://encryptdev.com">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('/images/icon.png') }}">
@@ -35,8 +35,8 @@
         "@type": "Organization",
         "name": "Encrypt Digital Solution",
         "description": "Software house terpercaya yang menyediakan solusi digital inovatif",
-        "url": "https://encryptdigital.com",
-        "logo": "https://encryptdigital.com/logo.png",
+        "url": "https://encryptdev.com",
+        "logo": "https://encryptdev.com/logo.png",
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+62 851 7110 6025",
