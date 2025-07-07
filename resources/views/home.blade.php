@@ -129,7 +129,7 @@
                     sesuai kebutuhan bisnis, tanpa proses rumit dan dalam waktu yang jauh lebih singkat.</p>
 
                 <!-- Button Contact -->
-                <p class="mt-10 mb-4 text-xs font-semibold text-black">Hubungi Kami Untuk Konsultasi Secara Gratis</p>
+                {{-- <p class="mt-10 mb-4 text-xs font-semibold text-black">Hubungi Kami Untuk Konsultasi Secara Gratis</p>
                 <div class="flex ">
                     <input
                         class="tracking-tight  bg-white max-w-sm border-[0.2rem] w-full rounded-l-md  border-blue-500"
@@ -137,7 +137,7 @@
                     <button
                         class="px-4 py-2 text-white bg-blue-500 rounded-r-md hover:bg-blue-600 hover:cursor-pointer hover:scale-110">Free
                         Consult</button>
-                </div>
+                </div> --}}
             </div>
 
             <div class="hidden lg:block">
@@ -738,7 +738,7 @@
                     <div
                         class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
                         <p class="text-base font-semibold text-black lg:text-lg">Iklil Najmi</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">Junior Developer</p>
+                        <p class="text-xs font-light text-gray-600 lg:text-sm">Software Engineer</p>
                     </div>
                 </div>
                 <!-- Team Card -->
@@ -823,7 +823,7 @@
                 </div>
 
                 <!-- Kolom 4: Berlangganan Newsletter -->
-                <div>
+                {{-- <div>
                     <h3 class="text-lg font-semibold text-white">Newsletter</h3>
                     <p class="mt-2 text-sm text-gray-400">Dapatkan update terbaru langsung di email Anda.</p>
                     <form class="flex mt-4">
@@ -832,7 +832,7 @@
                         <button
                             class="px-4 py-2 text-white transition bg-blue-600 rounded-r-md hover:bg-blue-700">Kirim</button>
                     </form>
-                </div>
+                </div> --}}
 
             </div>
 
