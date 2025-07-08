@@ -36,7 +36,7 @@
         "name": "Encrypt Digital Solution",
         "description": "Software house terpercaya yang menyediakan solusi digital inovatif",
         "url": "https://encryptdev.com",
-        "logo": "https://encryptdev.com/logo.png",
+        "logo": "https://encryptdev.com/images/icon.png",
         "contactPoint": {
             "@type": "ContactPoint",
             "telephone": "+62 851 7110 6025",
@@ -151,10 +151,10 @@
             <div class="flex flex-wrap items-center justify-center max-w-6xl gap-8 mx-auto mt-10">
                 <img class="w-1/5 h-fit lg:w-44 grayscale hover:grayscale-0" src="{{ asset('images/yazaki.png') }}"
                     alt="Logo Yazaki">
-                <img class="w-1/5 lg:w-20 h-fit grayscale hover:grayscale-0" src="{{ asset('images/smkn1.png') }}"
+                {{-- <img class="w-1/5 lg:w-20 h-fit grayscale hover:grayscale-0" src="{{ asset('images/smkn1.png') }}"
                     alt="Logo SMKN 1">
                 <img class="w-1/5 lg:w-20 h-fit grayscale hover:grayscale-0" src="{{ asset('images/smpn4.png') }}"
-                    alt="Logo SMPN 4">
+                    alt="Logo SMPN 4"> --}}
                 <p class="text-base font-black text-black lg:text-lg hover:text-green-400">TAREMAKMUR</p>
                 <img class="w-1/5 h-fit lg:w-44 grayscale hover:grayscale-0" src="{{ asset('images/naima.png') }}"
                     alt="Logo Naima">
