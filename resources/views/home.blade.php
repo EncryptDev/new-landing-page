@@ -175,7 +175,7 @@
         </p>
 
         <div class="flex justify-center mt-12">
-            <button class="px-4 py-2 text-white bg-blue-600 rounded-sm hover:bg-blue-700">Hubungi Kami</button>
+            <a href="mailto:client@encryptdev.com" class="px-4 py-2 text-white bg-blue-600 rounded-sm hover:bg-blue-700">Hubungi Kami</a>
         </div>
 
         <!-- Card Area -->
@@ -503,6 +503,24 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="splide__slide px-4">
+                            <div
+                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
+                                <img src="{{ asset('/images/cafe-self2.jpg') }}" class="h-48 object-cover w-full" />
+                                <div class="p-6">
+                                    <h3 class="text-xl font-semibold mb-2 text-white">Mobile Self Service</h3>
+                                    <p class="text-gray-300 mb-4">Sistem untuk menerima pesanan pelanggan melalui smartphone</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span
+                                            class="px-3 py-1 bg-sky-600 text-xs rounded-full text-white">React Native</span>
+                                        <span
+                                            class="px-3 py-1 bg-pink-600 text-xs rounded-full text-white">NestJs</span>
+                                        <span
+                                            class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">PostgreSql</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -678,7 +696,7 @@
                     <div class="mt-3 sm:pe-8">
                         <h3 class="text-lg font-semibold  text-white">Legality</h3>
                         <time
-                            class="block mb-2 text-sm font-normal leading-none  text-gray-500">12 December 2024</time>
+                            class="block mb-2 text-sm font-normal leading-none  text-gray-500">7 December 2024</time>
                         <p class="text-base font-normal  text-gray-400">EncryptDev sekarang berada di bawah PT Encrypt Digital
                                     Solution. Untuk siap menjalin kerja sama lebih luas dan professional</p>
                     </div>
@@ -696,8 +714,8 @@
             <h6 class="mt-2 text-base font-light text-center text-gray-700">Team kami siap membantu permasalahan
                 digital pada bisnis anda. Silahkan hubungi kami untuk diskusi bersama team secara langsung.</h6>
             <div class="flex justify-center mt-4">
-                <button class="px-4 py-2 text-black bg-gray-100 rounded-full hover:bg-bgblack hover:text-white"><i
-                        class="fa-solid fa-phone-volume me-2"></i>Book a Call</button>
+                <a href="https://wa.me/6285171106025" class="px-4 py-2 text-black bg-gray-100 rounded-full hover:bg-bgblack hover:text-white"><i
+                        class="fa-solid fa-phone-volume me-2"></i>Book a Call</a>
             </div>
             <!-- Team Section -->
             <div class="flex flex-wrap justify-center gap-2 mt-12 lg:gap-4 ">
@@ -738,7 +756,7 @@
                     <div
                         class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
                         <p class="text-base font-semibold text-black lg:text-lg">Iklil Najmi</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">Software Engineer</p>
+                        <p class="text-xs font-light text-gray-600 lg:text-sm">Jr. Software Engineer</p>
                     </div>
                 </div>
                 <!-- Team Card -->
