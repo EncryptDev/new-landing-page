@@ -158,6 +158,8 @@
                 <p class="text-base font-black text-black lg:text-lg hover:text-green-400">TAREMAKMUR</p>
                 <img class="w-1/5 h-fit lg:w-44 grayscale hover:grayscale-0" src="{{ asset('images/naima.png') }}"
                     alt="Logo Naima">
+                <img class="w-1/5 h-fit lg:w-20 grayscale hover:grayscale-0" src="{{ asset('images/smkn2sekayu.png') }}"
+                    alt="Logo SMKN2Sekayu">
                 <img class="w-1/5 lg:w-20 h-fit grayscale hover:grayscale-0"
                     src="{{ asset('images/janji-kembali.png') }}" alt="Logo Janji Kembali">
             </div>
