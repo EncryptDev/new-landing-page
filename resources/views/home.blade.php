@@ -742,6 +742,16 @@
                 <!-- Team Card -->
                 <div class="relative w-44 lg:w-56 h-72">
                     <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
+                        src="{{ asset('images/dewangga.jpg') }}" alt="Team Profile">
+                    <div
+                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
+                        <p class="text-base font-semibold text-black lg:text-lg">Dewangga Wahyu</p>
+                        <p class="text-xs font-light text-gray-600 lg:text-sm">Backend Developer</p>
+                    </div>
+                </div>
+                <!-- Team Card -->
+                <div class="relative w-44 lg:w-56 h-72">
+                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
                         src="{{ asset('images/dugi.jpg') }}" alt="Team Profile">
                     <div
                         class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
@@ -765,7 +775,7 @@
                         src="{{ asset('images/anas.png') }}" alt="Team Profile">
                     <div
                         class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
-                        <p class="text-base font-semibold text-black lg:text-lg">Pirgianas</p>
+                        <p class="text-base font-semibold text-black lg:text-lg">Pirgianas Surya</p>
                         <p class="text-xs font-light text-gray-600 lg:text-sm">UI/UX Designer</p>
                     </div>
                 </div>
