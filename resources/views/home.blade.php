@@ -762,7 +762,7 @@
                     </div>
                 </div>
                 <!-- Team Card -->
-                <div class="relative w-44 lg:w-56 h-72">
+                {{-- <div class="relative w-44 lg:w-56 h-72">
                     <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
                         src="{{ asset('images/iklil.jpg') }}" alt="Team Profile">
                     <div
@@ -770,7 +770,7 @@
                         <p class="text-base font-semibold text-black lg:text-lg">Iklil Najmi</p>
                         <p class="text-xs font-light text-gray-600 lg:text-sm">Jr. Software Engineer</p>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Team Card -->
                 <div class="relative w-44 lg:w-56 h-72">
                     <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
