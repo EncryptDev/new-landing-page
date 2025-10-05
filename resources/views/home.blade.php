@@ -1,524 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encrypt Digital Solution | Software House Terdepan di Indonesia</title>
-    <meta name="description"
-        content="Encrypt Digital Solution adalah software house terpercaya yang menyediakan solusi digital inovatif untuk bisnis Anda. Dapatkan aplikasi web, mobile, dan sistem enterprise terbaik.">
-    <meta name="keywords"
-        content="software house, web development, mobile app, sistem enterprise, digital solution, encrypt digital">
-    <meta name="author" content="Encrypt Digital Solution">
-
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Encrypt Digital Solution | Software House Terdepan">
-    <meta property="og:description" content="Solusi digital terpercaya untuk transformasi bisnis Anda">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://encryptdev.com">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Encrypt Digital Solution">
-    <meta name="twitter:description" content="Software house terpercaya untuk solusi digital bisnis">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://encryptdev.com">
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('/images/icon.png') }}">
-
-    <!-- Schema.org JSON-LD -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Encrypt Digital Solution",
-        "description": "Software house terpercaya yang menyediakan solusi digital inovatif",
-        "url": "https://encryptdev.com",
-        "logo": "https://encryptdev.com/images/icon.png",
-        "contactPoint": {
-            "@type": "ContactPoint",
-            "telephone": "+62 851 7110 6025",
-            "contactType": "customer service"
-        }
-    }
-    </script>
-
-
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/a627a75623.js" crossorigin="anonymous"></script>
-    <script src="//unpkg.com/alpinejs" defer></script>
-    <link rel="stylesheet" href="{{ asset('css/splide.min.css') }}">
     <style>
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
         @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0px);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
-
-        @keyframes pulse-slow {
-
-            0%,
-            100% {
-                opacity: 0.4;
-            }
-
-            50% {
-                opacity: 0.8;
-            }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.8); }
         }
-
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
         .gradient-bg {
-            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c, #4facfe, #00f2fe);
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #312e81, #1e3a8a);
             background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
+            animation: gradient-shift 15s ease infinite;
         }
-
-        .floating {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .pulse-slow {
-            animation: pulse-slow 4s ease-in-out infinite;
-        }
-
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.1);
+        .floating { animation: float 6s ease-in-out infinite; }
+        .pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        .text-shadow {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-slide {
+            min-width: 100%;
+            padding: 0 1rem;
+        }
+        @media (min-width: 768px) {
+            .carousel-slide {
+                min-width: 50%;
+            }
+        }
+        @media (min-width: 1024px) {
+            .carousel-slide {
+                min-width: 33.333%;
+            }
         }
     </style>
 </head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
 
-<body>
-    {{-- <x-home.navbar /> --}}
+    <!-- Hero Section with Animated Background -->
+    <section class="relative min-h-screen gradient-bg grid-pattern overflow-hidden">
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating"></div>
+        <div class="absolute top-40 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating" style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating" style="animation-delay: 4s;"></div>
 
-    <!-- Hero Section -->
-    <section class="pb-20 bg-bgsecondary">
-        <div class="flex justify-center max-w-6xl gap-4 mx-auto pt-28 lg:pt-40 ">
-            <div class="w-full px-6 max-w-none lg:px-0">
-                <h1 class="font-bold text-3xl/snug lg:text-5xl/normal ">Buat Software Untuk Optimasi Bisnis Anda, <span
-                        class="px-4 py-2 text-white bg-yellow-400">Dalam Sekejap</span></h1>
-                <p class="mt-5 text-base font-normal text-gray-500">Kami bantu Anda membangun software custom yang
-                    sesuai kebutuhan bisnis, tanpa proses rumit dan dalam waktu yang jauh lebih singkat.</p>
+        <div class="relative z-10 container mx-auto px-6 pt-32 pb-20">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold text-blue-300">
+                        <i class="fas fa-rocket mr-2"></i>Software Dengan Development Tercepat
+                    </div>
 
-                <!-- Button Contact -->
-                {{-- <p class="mt-10 mb-4 text-xs font-semibold text-black">Hubungi Kami Untuk Konsultasi Secara Gratis</p>
-                <div class="flex ">
-                    <input
-                        class="tracking-tight  bg-white max-w-sm border-[0.2rem] w-full rounded-l-md  border-blue-500"
-                        type="text" placeholder="Enter Your Email...">
-                    <button
-                        class="px-4 py-2 text-white bg-blue-500 rounded-r-md hover:bg-blue-600 hover:cursor-pointer hover:scale-110">Free
-                        Consult</button>
-                </div> --}}
-            </div>
+                    <h1 class="text-5xl lg:text-7xl font-black leading-tight">
+                        Transformasi Digital
+                        <span class="block text-gradient">Dalam Sekejap</span>
+                    </h1>
 
-            <div class="hidden lg:block">
-                <img src="{{ asset('images/final hero.png') }}" class="h-auto w-4xl">
-            </div>
-        </div>
-
-        <div class="mt-8">
-            <p class="mx-auto text-center text-gray-400">Beberapa Client Puas Menggunakan Jasa Kami</p>
-
-            <div class="flex flex-wrap items-center justify-center max-w-6xl gap-8 mx-auto mt-10">
-                <img class="w-1/5 h-fit lg:w-44 grayscale hover:grayscale-0" src="{{ asset('images/yazaki.png') }}"
-                    alt="Logo Yazaki">
-                {{-- <img class="w-1/5 lg:w-20 h-fit grayscale hover:grayscale-0" src="{{ asset('images/smkn1.png') }}"
-                    alt="Logo SMKN 1">
-                <img class="w-1/5 lg:w-20 h-fit grayscale hover:grayscale-0" src="{{ asset('images/smpn4.png') }}"
-                    alt="Logo SMPN 4"> --}}
-                <p class="text-base font-black text-black lg:text-lg hover:text-green-400">TAREMAKMUR</p>
-                <img class="w-1/5 h-fit lg:w-44 grayscale hover:grayscale-0" src="{{ asset('images/naima.png') }}"
-                    alt="Logo Naima">
-                <img class="w-1/5 h-fit lg:w-20 grayscale hover:grayscale-0" src="{{ asset('images/smkn2sekayu.png') }}"
-                    alt="Logo SMKN2Sekayu">
-                <img class="w-1/5 lg:w-20 h-fit grayscale hover:grayscale-0"
-                    src="{{ asset('images/janji-kembali.png') }}" alt="Logo Janji Kembali">
-            </div>
-        </div>
-
-    </section>
-
-    <!-- Services Section -->
-    <section class="px-6 py-10 lg:py-20 bg-bgblack lg:px-0">
-        <div class="text-white text-3xl/normal lg:text-5xl/snug max-w-[40rem] font-black text-center mx-auto"><span
-                class="underline">Mulai
-                Coba</span> Dengan Salah Satu <span class="py-1 text-black bg-white">Layanan Kami</span></div>
-        <p class="max-w-xl mx-auto mt-5 font-thin text-center text-white">Mulailah dari layanan yang paling cocok dengan
-            kebutuhan Anda saat ini, dan biarkan teknologi kami bekerja mempermudah langkah Anda berikutnya.
-        </p>
-
-        <div class="flex justify-center mt-12">
-            <a href="mailto:client@encryptdev.com" class="px-4 py-2 text-white bg-blue-600 rounded-sm hover:bg-blue-700">Hubungi Kami</a>
-        </div>
-
-        <!-- Card Area -->
-        <div class="grid justify-center max-w-6xl grid-cols-2 gap-4 mx-auto mt-10 lg:mt-20 lg:flex lg:gap-6">
-
-            <div class="w-full text-center bg-white rounded-md shadow-2xl lg:max-w-sm shadow-sky-300">
-                <img class="object-cover w-full h-40 max-w-md rounded-t-md" src="{{ asset('images/card-consult.png') }}"
-                    alt="">
-                <div class="p-2 bg-white lg:p-6 rounded-b-md h-48">
-                    <h1 class="text-base font-bold text-black lg:font-black lg:text-2xl">IT Consultation</h1>
-                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Bantu bisnis Anda menemukan solusi IT
-                        yang tepat dan efisien.</p>
-                </div>
-            </div>
-            <div class="w-full bg-white rounded-md text-center shadow-2xl lg:max-w-sm shadow-amber-300">
-                <img class="object-cover w-full h-40 max-w-md rounded-t-md"
-                    src="{{ asset('images/card-software.jpeg') }}" alt="">
-                <div class="p-2  bg-white lg:p-6 rounded-b-md h-48">
-                    <h1 class="text-base font-bold text-black lg:text-2xl lg:font-black">Software Development</h1>
-                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Bangun aplikasi custom sesuai kebutuhan
-                        bisnis Anda. </p>
-                </div>
-            </div>
-            <div class="w-full bg-white rounded-md text-center shadow-2xl lg:max-w-sm shadow-violet-400">
-                <img class="object-cover w-full h-40 max-w-md rounded-t-md"
-                    src="{{ asset('images/card-website.jpeg') }}" alt="">
-                <div class="p-2 bg-white lg:p-6 rounded-b-md h-48">
-                    <h1 class="text-base font-bold text-black lg:text-2xl lg:font-black">Website Development</h1>
-                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Buat website profesional untuk
-                        meningkatkan citra dan kepercayaan.</p>
-                </div>
-            </div>
-            <div class="w-full h-full text-center bg-white rounded-md shadow-2xl lg:max-w-sm shadow-emerald-300">
-                <img class="object-cover w-full h-40 max-w-md rounded-t-md" src="{{ asset('images/card-iot.jpeg') }}"
-                    alt="">
-                <div class="p-2 bg-white lg:p-6 rounded-b-md h-48">
-                    <h1 class="text-base font-bold text-black lg:text-2xl lg:font-black">IoT</h1>
-                    <p class="mt-2 text-sm font-normal text-black lg:text-base">Otomatisasi bisnis Anda dengan
-                        perangkat
-                        pintar dan data real-time. </p>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-    <!-- Service Details -->
-    <section class="flex flex-col justify-center px-6 py-20 bg-white lg:px-0" x-data="{ services: 'consultation' }">
-        <!-- Button category -->
-        <div class="grid justify-center grid-cols-2 gap-4 lg:flex lg:gap-8 lg:flex-nowrap">
-            <button @click="services = 'consultation'"
-                :class="services === 'consultation' ? 'bg-blue-600 text-white shadow-2xl shadow-sky-600' :
-                    'text-blue-600 bg-sky-100'"
-                class="px-4 py-3 text-lg font-semibold transition ease-in-out rounded-lg hover:cursor-pointer hover:scale-125">
-                <i class="fa-solid fa-chalkboard-user me-2"></i>
-                IT Consultation</button>
-            <button @click="services = 'software'"
-                :class="services === 'software' ? 'bg-amber-600 text-white shadow-2xl shadow-amber-300' :
-                    'text-amber-600 bg-amber-100'"
-                class="px-4 py-3 text-lg font-semibold transition ease-in-out rounded-lg text-amber-600 bg-amber-100 hover:cursor-pointer hover:scale-125">
-                <i class="fa-solid fa-laptop-code me-2"></i>
-                Software Development</button>
-            <button @click="services = 'websites'"
-                :class="services === 'websites' ? 'bg-violet-600 text-white shadow-2xl shadow-purple-400' :
-                    'text-violet-600 bg-violet-100'"
-                class="px-4 py-3 text-lg font-semibold transition ease-in-out rounded-lg text-violet-600 bg-violet-100 hover:cursor-pointer hover:scale-125">
-                <i class="fa-brands fa-firefox me-2"></i>
-                Website Development</button>
-            <button @click="services = 'iot'"
-                :class="services === 'iot' ? 'bg-emerald-600 text-white shadow-2xl shadow-green-300' :
-                    'text-emerald-600 bg-emerald-100'"
-                class="px-4 py-3 text-lg font-semibold transition ease-in-out rounded-lg text-emerald-600 bg-emerald-100 hover:cursor-pointer hover:scale-125">
-                <i class="fa-solid fa-robot me-2"></i>
-                Internet of Things</button>
-        </div>
-
-        <!-- Detail Content -->
-        <!--IT Consultation -->
-        <div x-show="services === 'consultation'">
-            <h2 class="mt-10 text-4xl font-black text-center text-black">Diskusikan Kebutuhan IT Kamu Dengan Kami</h2>
-
-            <p class="mt-8 text-base text-center text-black">Diskusikan permasalahan IT pada bisnis anda, mulai dari
-                kebutuhan system, proses digitalisasi, perawatan system, dan masih banyak lagi</p>
-
-            <!-- Top Featrures -->
-            <div class="flex flex-wrap justify-center gap-3 mt-8 lg:flex-nowrap">
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-clock me-2"></i>Waktu Flexible</p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-money-bill me-2"></i>Mulai dengan gratis
+                    <p class="text-xl text-gray-300 leading-relaxed">
+                        Kami hadirkan solusi software custom yang mengoptimasi bisnis Anda dengan teknologi terkini. Cepat, efisien, dan tanpa ribet.
                     </p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Online & Offline</p>
-                </div>
-            </div>
-            <div class="max-w-6xl mx-auto mt-12 shadow-xl">
-                <img class="w-full h-auto rounded-md" src="{{ asset('images/it consult.jpg') }}" alt="IT Consult">
-            </div>
-        </div>
-        <!-- End IT Consultation -->
 
-        <!-- Software Development -->
-        <div x-show="services === 'software'">
-            <h2 class="mt-10 text-4xl font-black text-center text-black">Aplikasikan Optimasi Bisnis Anda Dengan
-                <br />Software Custom Dari Kami
-            </h2>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="mailto:client@encryptdev.com" class="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-bold text-lg overflow-hidden">
+                            <span class="relative z-10 flex items-center">
+                                Mulai Konsultasi Gratis
+                                <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                            </span>
+                        </a>
+                        <a href="#projects" class="px-8 py-4 glass rounded-full font-bold text-lg hover:bg-white/10 transition-all">
+                            Lihat Portfolio
+                        </a>
+                    </div>
 
-            <p class="mt-8 text-base text-center text-black">Ingin mengembangkan proses bisnis anda?. Ingin membuang
-                waktu manual yang lama?. Tenang kami bisa membuat <br />software custom sesuai dengan kebutuhan unik di
-                bisnis anda</p>
+                    <!-- Stats -->
+                    <div class="grid grid-cols-3 gap-6 pt-8">
+                        <div>
+                            <div class="text-4xl font-black text-gradient">50+</div>
+                            <div class="text-sm text-gray-400">Projects</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-black text-gradient">98%</div>
+                            <div class="text-sm text-gray-400">Happy Clients</div>
+                        </div>
+                        <div>
+                            <div class="text-4xl font-black text-gradient">4+</div>
+                            <div class="text-sm text-gray-400">Years</div>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Top Featrures -->
-            <div class="flex flex-wrap justify-center gap-3 mt-8 lg:flex-nowrap">
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-clock me-2"></i>Teknologi Terbaru</p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-money-bill me-2"></i>Custom Software
-                    </p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Dokumentasi</p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-person-chalkboard me-2"></i>Training
-                        Penggunaan
-                        Software</p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-wrench me-2"></i></i>Maintenance</p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-link me-2"></i>Integration</p>
-                </div>
-            </div>
-            <div class="max-w-6xl mx-auto mt-12 shadow-xl">
-                <img class="w-full h-auto rounded-md" src="{{ asset('images/software.jpg') }}" alt="IT Consult">
-            </div>
-        </div>
-        <!-- End Software Development -->
-
-        <!-- Website Development -->
-        <div x-show="services === 'websites'">
-            <h2 class="mt-10 text-4xl font-black text-center text-black">Perluas Pasar Anda Dengan Website</h2>
-
-            <p class="mt-8 text-base text-center text-black">Gapai lebih banyak client potensial. Perkenalkan layanan
-                anda agar orang lain lebih mudah mengetahui bisnis anda</p>
-
-            <!-- Top Featrures -->
-            <div class="flex flex-wrap justify-center gap-3 mt-8 lg:flex-nowrap">
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-clock me-2"></i>Teknologi Terbaru</p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-money-bill me-2"></i>Lebih Murah
-                    </p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-magnifying-glass me-2"></i>SEO</p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-pen-nib me-2"></i>Desain Menarik</p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-feather me-2"></i>Ringan dan Cepat</p>
-                </div>
-            </div>
-            <div class="max-w-6xl mx-auto mt-12 shadow-xl">
-                <img class="w-full h-auto rounded-md" src="{{ asset('images/websites.jpg') }}" alt="IT Consult">
-            </div>
-        </div>
-        <!-- End Website -->
-
-        <!-- Internet Of Things -->
-        <div x-show="services === 'iot'">
-            <h2 class="mt-10 text-4xl font-black text-center text-black">Integrasikan Network Dengan Perangkat Anda
-            </h2>
-
-            <p class="mt-8 text-base text-center text-black">Tingkatkan produktivitas dengan membuat otomasisasi dengan
-                menggunakan perangkat pintar</p>
-
-            <!-- Top Featrures -->
-            <div class="flex flex-wrap justify-center gap-3 mt-8 lg:flex-nowrap">
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-clock me-2"></i>Teknologi Terbaru</p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-money-bill me-2"></i>Maintenance
-                    </p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-video me-2"></i>Dokumentasi</p>
-                </div>
-                <div class="px-2 py-3 text-black bg-gray-200 rounded-sm">
-                    <p class="font-semibold text-black"><i class="fa-solid fa-money-bill me-2"></i>Harga Bersaing</p>
-                </div>
-            </div>
-            <div class="max-w-6xl mx-auto mt-12 shadow-xl">
-                <img class="w-full h-auto rounded-md" src="{{ asset('images/iot.jpg') }}" alt="IT Consult">
-            </div>
-        </div>
-        <!-- End of Internet Of Things -->
-
-    </section>
-
-
-    <!-- End Of Reccent Project -->
-
-    <!-- Projects Section -->
-    <section id="projects" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2
-                    class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                    Project Portfolio
-                </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Berbagai project sukses yang telah kami kerjakan untuk klien dari berbagai industri
-                </p>
-            </div>
-            <!-- Project Card -->
-            <div class="mx-auto splide">
-                <div class="splide__track">
-                    <div class="splide__list">
-                        <div class="splide__slide px-4">
-                            <div
-                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                                <img src="{{ asset('/images/porto-taremakmur.png') }}" class="h-48 object-cover" />
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2 text-white">Management Sales</h3>
-                                    <p class="text-gray-300 mb-4">Sistem Mobile dan Web digunakan untuk manajemen
-                                        transaksi</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 bg-red-600 text-xs rounded-full text-white">Laravel</span>
-                                        <span
-                                            class="px-3 py-1 bg-green-600 text-xs rounded-full text-white">Kotlin</span>
-                                        <span
-                                            class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">MySQL</span>
+                <div class="relative hidden lg:block">
+                    <div class="pulse-glow rounded-2xl p-1">
+                        <div class="glass rounded-2xl p-8">
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 p-4 rounded-xl">
+                                    <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-code text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="h-3 bg-gray-600 rounded-full w-3/4"></div>
+                                        <div class="h-2 bg-gray-700 rounded-full w-1/2 mt-2"></div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="splide__slide px-4">
-                            <div
-                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                                <div
-                                    class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                                    <span class="text-2xl font-bold text-white">AI</span>
-                                </div>
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2 text-white">AI Self Learning</h3>
-                                    <p class="text-gray-300 mb-4">Sejenis chatbot lokal offline untuk membantu proses
-                                        tanya jawab</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 bg-blue-600 text-xs rounded-full text-white">Next.Js</span>
-                                        <span class="px-3 py-1 bg-green-600 text-xs rounded-full text-white">Fast
-                                            Api</span>
-                                        <span class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">Postgre
-                                            SQL</span>
+                                <div class="flex items-center space-x-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-4 rounded-xl">
+                                    <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-mobile-alt text-2xl"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="h-3 bg-gray-600 rounded-full w-2/3"></div>
+                                        <div class="h-2 bg-gray-700 rounded-full w-1/3 mt-2"></div>
                                     </div>
                                 </div>
-                            </div>
-
-                        </div>
-                        <div class="splide__slide px-4">
-                            <div
-                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                                <img src="{{ asset('/images/porto-naima.png') }}" class="h-48 object-cover" />
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2 text-white">Landing Page</h3>
-                                    <p class="text-gray-300 mb-4">Landing Page untuk sebuah company dengan Blog, Jobs,
-                                        dan lainnya</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 bg-red-600 text-xs rounded-full text-white">Laravel</span>
-                                        <span
-                                            class="px-3 py-1 bg-green-600 text-xs rounded-full text-white">FrankenPhp</span>
-                                        <span
-                                            class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">MySQL</span>
+                                <div class="flex items-center space-x-4 bg-gradient-to-r from-pink-500/20 to-orange-500/20 p-4 rounded-xl">
+                                    <div class="w-12 h-12 bg-pink-500 rounded-lg flex items-center justify-center">
+                                        <i class="fas fa-robot text-2xl"></i>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="splide__slide px-4">
-                            <div
-                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                                <div
-                                    class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                                    <span class="text-2xl font-bold text-white">IoT</span>
-                                </div>
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2 text-white">Auto Scan</h3>
-                                    <p class="text-gray-300 mb-4">Aplikasi scan otomatis barcode yang sedang berjalan
-                                        untuk stock system</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 bg-blue-600 text-xs rounded-full text-white">Next.js</span>
-                                        <span
-                                            class="px-3 py-1 bg-green-600 text-xs rounded-full text-white">MySql</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="splide__slide px-4">
-                            <div
-                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                                <img src="{{ asset('/images/porto-epo.png') }}" class="h-48 object-cover" />
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2 text-white">Electronics PO</h3>
-                                    <p class="text-gray-300 mb-4">Sistem untuk e-sign dan kirim purchase order via
-                                        email ke supplier secara otomatis</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 bg-red-600 text-xs rounded-full text-white">Laravel</span>
-                                        <span
-                                            class="px-3 py-1 bg-pink-600 text-xs rounded-full text-white">Livewire</span>
-                                        <span
-                                            class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">MySQL</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="splide__slide px-4">
-                            <div
-                                class="glass-effect rounded-lg overflow-hidden hover:transform hover:scale-105 transition-all duration-300">
-                                <img src="{{ asset('/images/cafe-self2.jpg') }}" class="h-48 object-cover w-full" />
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold mb-2 text-white">Mobile Self Service</h3>
-                                    <p class="text-gray-300 mb-4">Sistem untuk menerima pesanan pelanggan melalui smartphone</p>
-                                    <div class="flex flex-wrap gap-2">
-                                        <span
-                                            class="px-3 py-1 bg-sky-600 text-xs rounded-full text-white">React Native</span>
-                                        <span
-                                            class="px-3 py-1 bg-pink-600 text-xs rounded-full text-white">NestJs</span>
-                                        <span
-                                            class="px-3 py-1 bg-purple-600 text-xs rounded-full text-white">PostgreSql</span>
+                                    <div class="flex-1">
+                                        <div class="h-3 bg-gray-600 rounded-full w-5/6"></div>
+                                        <div class="h-2 bg-gray-700 rounded-full w-2/3 mt-2"></div>
                                     </div>
                                 </div>
                             </div>
@@ -526,101 +165,357 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Trusted By -->
+            <div class="mt-20">
+                <p class="text-center text-gray-400 mb-8">Dipercaya oleh perusahaan terkemuka</p>
+                <div class="flex flex-wrap justify-center items-center gap-8 lg:gap-12">
+                    <!-- Logo placeholder boxes with gradient backgrounds -->
+                    <div class="w-32 h-16 lg:w-40 lg:h-20  rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
+                        <img class="bg-white p-2 rounded-lg" src="{{ asset("images/yazaki.png") }}" alt="Logo yazzaki">
+                    </div>
+                    <div class="w-32 h-16 lg:w-40 lg:h-20 glass rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
+                        <div class="text-lg lg:text-xl font-black text-gray-300">TAREMAKMUR</div>
+                    </div>
+                    <div class="w-32 h-16 lg:w-40 lg:h-20  rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
+                        <img class="bg-white p-2 rounded-lg" src="{{ asset("images/naima.png") }}" alt="Naima">
+                    </div>
+                    <div class="w-12 h-12 lg:w-20 lg:h-20 glass rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
+                         <img class="bg-white p-2 rounded-lg" src="{{ asset("images/smkn2sekayu.png") }}" alt="SMA">
+                    </div>
+                      <div class="w-12 h-12 lg:w-20 lg:h-20 glass rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
+                         <img class="bg-white p-2 rounded-lg" src="{{ asset("images/janji-kembali.png") }}" alt="SMA">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-3xl text-gray-400"></i>
         </div>
     </section>
 
-    <!-- Happy Clients Section -->
-    <section id="clients" class="py-20 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Services Section -->
+    <section class="py-24 bg-gray-900 relative">
+        <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2
-                    class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                    Klien Bahagia
+                <h2 class="text-5xl font-black mb-6">
+                    Layanan <span class="text-gradient">Unggulan</span>
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Solusi teknologi komprehensif untuk semua kebutuhan digital bisnis Anda
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service Card 1 -->
+                <div class="group glass rounded-2xl p-8 hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-chalkboard-user text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">IT Consultation</h3>
+                    <p class="text-gray-400 mb-6">Strategi digital dan solusi IT yang tepat untuk bisnis Anda</p>
+                    <div class="space-y-2 text-sm text-gray-500">
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Konsultasi Gratis</div>
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Waktu Fleksibel</div>
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Online & Offline</div>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="group glass rounded-2xl p-8 hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-laptop-code text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Software Development</h3>
+                    <p class="text-gray-400 mb-6">Aplikasi custom yang sesuai dengan kebutuhan unik bisnis Anda</p>
+                    <div class="space-y-2 text-sm text-gray-500">
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Custom Software</div>
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Training Lengkap</div>
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Maintenance</div>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="group glass rounded-2xl p-8 hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-globe text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Website Development</h3>
+                    <p class="text-gray-400 mb-6">Website profesional yang meningkatkan kredibilitas bisnis</p>
+                    <div class="space-y-2 text-sm text-gray-500">
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>SEO Optimized</div>
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Responsive Design</div>
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Fast Loading</div>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="group glass rounded-2xl p-8 hover-lift cursor-pointer">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fas fa-robot text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Internet of Things</h3>
+                    <p class="text-gray-400 mb-6">Otomasi bisnis dengan perangkat pintar dan IoT</p>
+                    <div class="space-y-2 text-sm text-gray-500">
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Real-time Data</div>
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Smart Automation</div>
+                        <div><i class="fas fa-check text-green-400 mr-2"></i>Monitoring 24/7</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Carousel Section -->
+    <section id="projects" class="py-24 bg-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black mb-6">
+                    Project <span class="text-gradient">Portfolio</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Berbagai project sukses yang telah kami selesaikan untuk klien dari berbagai industri
+                </p>
+            </div>
+
+            <div class="carousel-container max-w-7xl mx-auto">
+                <div class="carousel-track" id="projectCarousel">
+                    <!-- Project 1 -->
+                    <div class="carousel-slide">
+                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
+                            <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+                                <i class="fas fa-shopping-cart text-6xl opacity-50"></i>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Management Sales</h3>
+                                <p class="text-gray-400 text-sm mb-4">Sistem mobile dan web untuk manajemen transaksi bisnis</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-red-500/20 text-red-300 text-xs rounded-full">Laravel</span>
+                                    <span class="px-3 py-1 bg-green-500/20 text-green-300 text-xs rounded-full">Kotlin</span>
+                                    <span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="carousel-slide">
+                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
+                            <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                                <i class="fas fa-brain text-6xl opacity-50"></i>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">AI Self Learning</h3>
+                                <p class="text-gray-400 text-sm mb-4">Chatbot lokal offline untuk tanya jawab otomatis</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-full">Next.js</span>
+                                    <span class="px-3 py-1 bg-green-500/20 text-green-300 text-xs rounded-full">FastAPI</span>
+                                    <span class="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full">PostgreSQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="carousel-slide">
+                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
+                            <div class="h-48 bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center">
+                                <i class="fas fa-briefcase text-6xl opacity-50"></i>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Landing Page Pro</h3>
+                                <p class="text-gray-400 text-sm mb-4">Landing page company dengan blog dan jobs portal</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-red-500/20 text-red-300 text-xs rounded-full">Laravel</span>
+                                    <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 text-xs rounded-full">FrankenPHP</span>
+                                    <span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="carousel-slide">
+                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
+                            <div class="h-48 bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center">
+                                <i class="fas fa-barcode text-6xl opacity-50"></i>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Auto Scan IoT</h3>
+                                <p class="text-gray-400 text-sm mb-4">Aplikasi scan otomatis barcode untuk stock system</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-full">Next.js</span>
+                                    <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 text-xs rounded-full">MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="carousel-slide">
+                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
+                            <div class="h-48 bg-gradient-to-br from-indigo-600 to-blue-600 flex items-center justify-center">
+                                <i class="fas fa-file-signature text-6xl opacity-50"></i>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Electronics PO</h3>
+                                <p class="text-gray-400 text-sm mb-4">Sistem e-sign dan kirim purchase order otomatis ke supplier</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-red-500/20 text-red-300 text-xs rounded-full">Laravel</span>
+                                    <span class="px-3 py-1 bg-pink-500/20 text-pink-300 text-xs rounded-full">Livewire</span>
+                                    <span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">MySQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 6 -->
+                    <div class="carousel-slide">
+                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
+                            <div class="h-48 bg-gradient-to-br from-yellow-600 to-orange-600 flex items-center justify-center">
+                                <i class="fas fa-mobile-screen text-6xl opacity-50"></i>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Mobile Self Service</h3>
+                                <p class="text-gray-400 text-sm mb-4">Sistem untuk menerima pesanan pelanggan melalui smartphone</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-full">React Native</span>
+                                    <span class="px-3 py-1 bg-pink-500/20 text-pink-300 text-xs rounded-full">NestJs</span>
+                                    <span class="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full">PostgreSQL</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carousel Controls -->
+                <div class="flex justify-center items-center gap-4 mt-8">
+                    <button onclick="moveCarousel('project', -1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div id="projectDots" class="flex gap-2"></div>
+                    <button onclick="moveCarousel('project', 1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Carousel Section -->
+    <section id="clients" class="py-24 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black mb-6">
+                    Klien <span class="text-gradient">Bahagia</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
                     Testimoni dari klien yang telah merasakan manfaat solusi digital kami
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="p-6 glass-effect rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-lg font-bold">ID</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-white">Indra</h4>
-                            <p class="text-sm text-gray-400">Taremakmur</p>
+            <div class="carousel-container max-w-7xl mx-auto">
+                <div class="carousel-track" id="testimonialCarousel">
+                    <!-- Testimonial 1 -->
+                    <div class="carousel-slide">
+                        <div class="glass rounded-2xl p-8 hover-lift h-full">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4 text-2xl font-bold">
+                                    ID
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold">Indra</h4>
+                                    <p class="text-sm text-gray-400">Taremakmur</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 italic mb-4">"Encrypt Digital Solution memberikan solusi yang sempurna untuk digitalisasi bisnis kami. Highly recommended!"</p>
+                            <div class="flex text-yellow-400 text-xl">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
                         </div>
                     </div>
-                    <p class="text-gray-300 italic">"Encrypt Digital Solution memberikan solusi yang sempurna untuk
-                        digitalisasi bisnis kami. Highly recommended!"</p>
-                    <div class="flex mt-4">
-                        <span class="text-yellow-400">★★★★★</span>
+
+                    <!-- Testimonial 2 -->
+                    <div class="carousel-slide">
+                        <div class="glass rounded-2xl p-8 hover-lift h-full">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mr-4 text-2xl font-bold">
+                                    KH
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold">Khoiron</h4>
+                                    <p class="text-sm text-gray-400">Janji Kembali</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 italic mb-4">"Tim yang sangat profesional dan hasil yang memuaskan. Proses development sangat transparan dan komunikatif."</p>
+                            <div class="flex text-yellow-400 text-xl">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="carousel-slide">
+                        <div class="glass rounded-2xl p-8 hover-lift h-full">
+                            <div class="flex items-center mb-6">
+                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4 text-2xl font-bold">
+                                    FS
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold">Faisal</h4>
+                                    <p class="text-sm text-gray-400">Naim</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-300 italic mb-4">"Kualitas code dan dokumentasi yang sangat baik. Maintenance jadi lebih mudah dan sistem berjalan sangat stabil."</p>
+                            <div class="flex text-yellow-400 text-xl">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="p-6 glass-effect rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-600 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-lg font-bold">KH</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-white">Khoiron</h4>
-                            <p class="text-sm text-gray-400">Janji Kembali</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 italic">"Tim yang sangat profesional dan hasil yang memuaskan."</p>
-                    <div class="flex mt-4">
-                        <span class="text-yellow-400">★★★★★</span>
-                    </div>
-                </div>
-
-                <div class="p-6 glass-effect rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <div
-                            class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-lg font-bold">DG</span>
-                        </div>
-                        <div>
-                            <h4 class="font-semibold text-white">Faisal</h4>
-                            <p class="text-sm text-gray-400">Naim</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-300 italic">"Kualitas code dan dokumentasi yang sangat baik. Maintenance jadi
-                        lebih mudah dan sistem berjalan sangat stabil."</p>
-                    <div class="flex mt-4">
-                        <span class="text-yellow-400">★★★★★</span>
-                    </div>
+                <!-- Carousel Controls -->
+                <div class="flex justify-center items-center gap-4 mt-8">
+                    <button onclick="moveCarousel('testimonial', -1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div id="testimonialDots" class="flex gap-2"></div>
+                    <button onclick="moveCarousel('testimonial', 1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
 
             <!-- Client Statistics -->
-            <div class="grid md:grid-cols-4 gap-8 mt-16">
-                <div class="text-center">
-                    <div
-                        class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-2">
-                        50+</div>
+            <div class="grid md:grid-cols-4 gap-8 mt-16 max-w-5xl mx-auto">
+                <div class="glass rounded-xl p-6 text-center hover-lift">
+                    <div class="text-5xl font-black text-gradient mb-2">50+</div>
                     <p class="text-gray-300">Project Selesai</p>
                 </div>
-                <div class="text-center">
-                    <div
-                        class="text-4xl font-bold bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent mb-2">
-                        98%</div>
+                <div class="glass rounded-xl p-6 text-center hover-lift">
+                    <div class="text-5xl font-black text-gradient mb-2">98%</div>
                     <p class="text-gray-300">Kepuasan Klien</p>
                 </div>
-                <div class="text-center">
-                    <div
-                        class="text-4xl font-bold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent mb-2">
-                        4+</div>
+                <div class="glass rounded-xl p-6 text-center hover-lift">
+                    <div class="text-5xl font-black text-gradient mb-2">4+</div>
                     <p class="text-gray-300">Tahun Pengalaman</p>
                 </div>
-                <div class="text-center">
-                    <div
-                        class="text-4xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent mb-2">
-                        24/7</div>
+                <div class="glass rounded-xl p-6 text-center hover-lift">
+                    <div class="text-5xl font-black text-gradient mb-2">24/7</div>
                     <p class="text-gray-300">Support</p>
                 </div>
             </div>
@@ -628,279 +523,327 @@
     </section>
 
     <!-- Timeline Section -->
-    <section id="timeline" class="py-20 bg-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-
+    <section id="timeline" class="py-24 bg-gray-800 relative">
+        <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2
-                    class="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-                    Perjalanan Kami
+                <h2 class="text-5xl font-black mb-6">
+                    Perjalanan <span class="text-gradient">Kami</span>
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
                     Milestone penting dalam perjalanan Encrypt Digital Solution
                 </p>
             </div>
 
-            <ol class="items-center sm:flex">
-                <li class="relative mb-6 sm:mb-0">
-                    <div class="flex items-center">
-                        <div
-                            class="z-10 flex items-center justify-center w-6 h-6  rounded-full ring-0  bg-blue-900 sm:ring-8 ring-gray-900 shrink-0">
-                            <svg class="w-2.5 h-2.5  text-blue-300" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                            </svg>
-                        </div>
-                        <div class="hidden sm:flex w-full  h-0.5 bg-gray-700"></div>
-                    </div>
-                    <div class="mt-3 sm:pe-8">
-                        <h3 class="text-lg font-semibold  text-white">Pertama Beroperasi</h3>
-                        <time
-                            class="block mb-2 text-sm font-normal leading-none  text-gray-500">3 Maret 2021</time>
-                        <p class="text-base font-normal  text-gray-400">Pertama kali dengan nama Encrypt Multimedia khusus untuk
-                                    menangani percetakan dan konten Multimedia</p>
-                    </div>
-                </li>
-                <li class="relative mb-6 sm:mb-0">
-                    <div class="flex items-center">
-                        <div
-                            class="z-10 flex items-center justify-center w-6 h-6 rounded-full ring-0  bg-blue-900 sm:ring-8 ring-gray-900 shrink-0">
-                            <svg class="w-2.5 h-2.5  text-blue-300" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                            </svg>
-                        </div>
-                        <div class="hidden sm:flex w-full  h-0.5 bg-gray-700"></div>
-                    </div>
-                    <div class="mt-3 sm:pe-8">
-                        <h3 class="text-lg font-semibold  text-white">Changing Focus</h3>
-                        <time
-                            class="block mb-2 text-sm font-normal leading-none  text-gray-500">21 Januari 2022</time>
-                        <p class="text-base font-normal  text-gray-400">Berganti fokus dan nama menjadi EncryptDev. Berfokus untuk
-                                    melayani Solusi IT untuk Bisnis</p>
-                    </div>
-                </li>
-                <li class="relative mb-6 sm:mb-0">
-                    <div class="flex items-center">
-                        <div
-                            class="z-10 flex items-center justify-center w-6 h-6  rounded-full ring-0  bg-blue-900 sm:ring-8 ring-gray-900 shrink-0">
-                            <svg class="w-2.5 h-2.5 text-blue-800 dark:text-blue-300" aria-hidden="true"
-                                xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path
-                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                            </svg>
-                        </div>
-                        <div class="hidden sm:flex w-full  h-0.5 bg-gray-700"></div>
-                    </div>
-                    <div class="mt-3 sm:pe-8">
-                        <h3 class="text-lg font-semibold  text-white">Legality</h3>
-                        <time
-                            class="block mb-2 text-sm font-normal leading-none  text-gray-500">7 December 2024</time>
-                        <p class="text-base font-normal  text-gray-400">EncryptDev sekarang berada di bawah PT Encrypt Digital
-                                    Solution. Untuk siap menjalin kerja sama lebih luas dan professional</p>
-                    </div>
-                </li>
-            </ol>
+            <div class="max-w-5xl mx-auto relative">
+                <!-- Timeline Line for Desktop -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 hidden lg:block"></div>
 
-        </div>
-    </section>
+                <!-- Timeline Line for Mobile -->
+                <div class="absolute left-6 top-0 w-1 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 lg:hidden"></div>
 
-    <!-- Our Team Section -->
-    <section class="py-12 bg-white">
-        <div class="max-w-6xl mx-auto">
-            <p class="text-base font-semibold text-center text-indigo-500">Contact Us</p>
-            <h1 class="mt-4 font-bold text-center text-gray-800 text-4xl/tight">Tim Kami Berpengalaman Dibidangnya</h1>
-            <h6 class="mt-2 text-base font-light text-center text-gray-700">Team kami siap membantu permasalahan
-                digital pada bisnis anda. Silahkan hubungi kami untuk diskusi bersama team secara langsung.</h6>
-            <div class="flex justify-center mt-4">
-                <a href="https://wa.me/6285171106025" class="px-4 py-2 text-black bg-gray-100 rounded-full hover:bg-bgblack hover:text-white"><i
-                        class="fa-solid fa-phone-volume me-2"></i>Book a Call</a>
-            </div>
-            <!-- Team Section -->
-            <div class="flex flex-wrap justify-center gap-2 mt-12 lg:gap-4 ">
-                <!-- Team Card -->
-                <div class="relative w-44 lg:w-56 h-72">
-                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
-                        src="{{ asset('images/bayu2.jpg') }}" alt="Team Profile">
-                    <div
-                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
-                        <p class="text-base font-semibold text-black lg:text-lg">Bayu Febriyono</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">Fullstack Developer</p>
+                <!-- Timeline Items -->
+                <div class="space-y-8 lg:space-y-12">
+                    <!-- Timeline 1 -->
+                    <div class="flex flex-row lg:flex-row items-start lg:items-center gap-4 lg:gap-8">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center z-10 flex-shrink-0 lg:hidden">
+                            <i class="fas fa-rocket text-xl"></i>
+                        </div>
+                        <div class="flex-1 lg:text-right">
+                            <div class="glass rounded-2xl p-4 lg:p-6 hover-lift">
+                                <h3 class="text-xl lg:text-2xl font-bold mb-2">Pertama Beroperasi</h3>
+                                <p class="text-blue-400 font-semibold mb-2 lg:mb-4 text-sm lg:text-base">3 Maret 2021</p>
+                                <p class="text-gray-400 text-sm lg:text-base">Pertama kali dengan nama Encrypt Multimedia khusus untuk menangani percetakan dan konten Multimedia</p>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full items-center justify-center z-10 flex-shrink-0 hidden lg:flex">
+                            <i class="fas fa-rocket text-xl"></i>
+                        </div>
+                        <div class="flex-1 hidden lg:block"></div>
+                    </div>
+
+                    <!-- Timeline 2 -->
+                    <div class="flex flex-row lg:flex-row items-start lg:items-center gap-4 lg:gap-8">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center z-10 flex-shrink-0 lg:hidden">
+                            <i class="fas fa-sync text-xl"></i>
+                        </div>
+                        <div class="flex-1 lg:hidden">
+                            <div class="glass rounded-2xl p-4 hover-lift">
+                                <h3 class="text-xl font-bold mb-2">Changing Focus</h3>
+                                <p class="text-purple-400 font-semibold mb-2 text-sm">21 Januari 2022</p>
+                                <p class="text-gray-400 text-sm">Berganti fokus dan nama menjadi EncryptDev. Berfokus untuk melayani Solusi IT untuk Bisnis</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 hidden lg:block"></div>
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full items-center justify-center z-10 flex-shrink-0 hidden lg:flex">
+                            <i class="fas fa-sync text-xl"></i>
+                        </div>
+                        <div class="flex-1 hidden lg:block">
+                            <div class="glass rounded-2xl p-6 hover-lift">
+                                <h3 class="text-2xl font-bold mb-2">Changing Focus</h3>
+                                <p class="text-purple-400 font-semibold mb-4">21 Januari 2022</p>
+                                <p class="text-gray-400">Berganti fokus dan nama menjadi EncryptDev. Berfokus untuk melayani Solusi IT untuk Bisnis</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timeline 3 -->
+                    <div class="flex flex-row lg:flex-row items-start lg:items-center gap-4 lg:gap-8">
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center z-10 flex-shrink-0 lg:hidden">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <div class="flex-1 lg:text-right">
+                            <div class="glass rounded-2xl p-4 lg:p-6 hover-lift">
+                                <h3 class="text-xl lg:text-2xl font-bold mb-2">Legality</h3>
+                                <p class="text-pink-400 font-semibold mb-2 lg:mb-4 text-sm lg:text-base">7 Desember 2024</p>
+                                <p class="text-gray-400 text-sm lg:text-base">EncryptDev sekarang berada di bawah PT Encrypt Digital Solution. Untuk siap menjalin kerja sama lebih luas dan profesional</p>
+                            </div>
+                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full items-center justify-center z-10 flex-shrink-0 hidden lg:flex">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <div class="flex-1 hidden lg:block"></div>
                     </div>
                 </div>
-                <!-- Team Card -->
-                <div class="relative w-44 lg:w-56 h-72">
-                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
-                        src="{{ asset('images/ragil.jpg') }}" alt="Team Profile">
-                    <div
-                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
-                        <p class="text-base font-semibold text-black lg:text-lg">Ragil Ridho</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">Frontend Developer</p>
-                    </div>
-                </div>
-                <!-- Team Card -->
-                <div class="relative w-44 lg:w-56 h-72">
-                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
-                        src="{{ asset('images/dewangga.jpg') }}" alt="Team Profile">
-                    <div
-                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
-                        <p class="text-base font-semibold text-black lg:text-lg">Dewangga Wahyu</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">Backend Developer</p>
-                    </div>
-                </div>
-                <!-- Team Card -->
-                <div class="relative w-44 lg:w-56 h-72">
-                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
-                        src="{{ asset('images/dugi.jpg') }}" alt="Team Profile">
-                    <div
-                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
-                        <p class="text-base font-semibold text-black lg:text-lg">Dugi Mulio</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">System Analys</p>
-                    </div>
-                </div>
-                <!-- Team Card -->
-                {{-- <div class="relative w-44 lg:w-56 h-72">
-                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
-                        src="{{ asset('images/iklil.jpg') }}" alt="Team Profile">
-                    <div
-                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
-                        <p class="text-base font-semibold text-black lg:text-lg">Iklil Najmi</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">Jr. Software Engineer</p>
-                    </div>
-                </div> --}}
-                <!-- Team Card -->
-                <div class="relative w-44 lg:w-56 h-72">
-                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
-                        src="{{ asset('images/anas.png') }}" alt="Team Profile">
-                    <div
-                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
-                        <p class="text-base font-semibold text-black lg:text-lg">Pirgianas Surya</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">UI/UX Designer</p>
-                    </div>
-                </div>
-                <!-- Team Card -->
-                {{-- <div class="relative w-44 lg:w-56 h-72">
-                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
-                        src="{{ asset('images/adishtya.jpeg') }}" alt="Team Profile">
-                    <div
-                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
-                        <p class="text-base font-semibold text-black lg:text-lg">Dwi Adishtya</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">General Affair</p>
-                    </div>
-                </div> --}}
-                {{-- <!-- Team Card -->
-                <div class="relative w-44 lg:w-56 h-72">
-                    <img class="object-cover w-full h-full rounded-lg grayscale hover:grayscale-0"
-                        src="{{ asset('images/azas.jpg') }}" alt="Team Profile">
-                    <div
-                        class="absolute bottom-2.5 w-full px-4 py-2 mx-3 bg-white/90 max-w-40 lg:max-w-48 me-12 rounded-xl flex flex-col items-center">
-                        <p class="text-base font-semibold text-black lg:text-lg">Azas Nur</p>
-                        <p class="text-xs font-light text-gray-600 lg:text-sm">Head Marketing</p>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </section>
-    <!-- End Our Team Section -->
 
+    <!-- Team Section -->
+    <section id="team" class="py-24 bg-gray-900">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold text-indigo-400 mb-4">
+                    <i class="fas fa-users mr-2"></i>Contact Us
+                </div>
+                <h2 class="text-5xl font-black mb-6">
+                    Tim <span class="text-gradient">Berpengalaman</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                    Team kami siap membantu permasalahan digital pada bisnis Anda. Hubungi kami untuk diskusi langsung
+                </p>
+                <a href="https://wa.me/6285171106025" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+                    <i class="fab fa-whatsapp text-2xl mr-2"></i>
+                    Book a Call
+                </a>
+            </div>
 
-    <footer class="py-10 text-gray-300 bg-gray-900">
-        <div class="container px-6 mx-auto md:px-12">
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
-
-                <!-- Kolom 1: Logo & Deskripsi -->
-                <div>
-                    <h2 class="text-2xl font-bold text-white">PT Encrypt Digital Solution</h2>
-                    <p class="mt-2 text-sm text-gray-400">
-                        Solusi terbaik untuk kebutuhan digital Anda. Kami menghadirkan inovasi dalam setiap layanan.
-                    </p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+                <!-- Team Member 1 -->
+                <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
+                    <div class="h-80 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+                        <img src="{{ asset("images/bayu2.jpg") }}" class="object-cover h-80">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
+                        <h4 class="font-bold text-lg">Bayu Febriyono</h4>
+                        <p class="text-sm text-gray-400">Fullstack Developer</p>
+                    </div>
                 </div>
 
-                <!-- Kolom 2: Navigasi -->
-                <div>
-                    <h3 class="text-lg font-semibold text-white">Contact</h3>
-                    <ul class="mt-2 space-y-2">
-                        <li><i class="fa-solid fa-phone me-2"></i><a href="#" class="transition hover:text-white">0851-7110-6025</a></li>
-                        <li><i class="fa-solid fa-envelope me-2"></i><a href="#" class="transition hover:text-white">client@encryptdev.com</a></li>
-                        <li><i class="fa-solid fa-location-dot me-2"></i><a href="#" class="transition hover:text-white">Dsn Karang Nongko Ds Mojoranu, Sooko, Mojokerto</a></li>
-                        {{-- <li><a href="#" class="transition hover:text-white">Tentang Kami</a></li>
-                        <li><a href="#" class="transition hover:text-white">Layanan</a></li>
-                        <li><a href="#" class="transition hover:text-white">Kontak</a></li> --}}
-                    </ul>
+                <!-- Team Member 2 -->
+                <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
+                    <div class="h-80 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
+                      <img src="{{ asset("images/ragil.jpg") }}" class="object-cover h-80">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
+                        <h4 class="font-bold text-lg">Ragil Ridho</h4>
+                        <p class="text-sm text-gray-400">Frontend Developer</p>
+                    </div>
                 </div>
 
-                <!-- Kolom 3: Media Sosial -->
+                <!-- Team Member 3 -->
+                <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
+                    <div class="h-80 bg-gradient-to-br from-pink-600 to-orange-600 flex items-center justify-center">
+                       <img src="{{ asset("images/dewangga.jpg") }}" class="object-cover h-80">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
+                        <h4 class="font-bold text-lg">Dewangga Wahyu</h4>
+                        <p class="text-sm text-gray-400">Backend Developer</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 4 -->
+                <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
+                    <div class="h-80 bg-gradient-to-br from-orange-600 to-yellow-600 flex items-center justify-center">
+                        <img src="{{ asset("images/dugi.jpg") }}" class="object-cover h-80">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
+                        <h4 class="font-bold text-lg">Dugi Mulio</h4>
+                        <p class="text-sm text-gray-400">System Analyst</p>
+                    </div>
+                </div>
+
+                <!-- Team Member 5 -->
+                <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
+                    <div class="h-80 bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center">
+                       <img src="{{ asset("images/anas.png") }}" class="object-cover h-80">
+                    </div>
+                    <div class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
+                        <h4 class="font-bold text-lg">Pirgianas Surya</h4>
+                        <p class="text-sm text-gray-400">UI/UX Designer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full filter blur-3xl floating"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full filter blur-3xl floating" style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <h2 class="text-5xl lg:text-6xl font-black mb-6">Siap Transformasi Digital?</h2>
+            <p class="text-2xl mb-12 opacity-90 max-w-3xl mx-auto">Hubungi kami sekarang untuk konsultasi gratis dan mulai perjalanan digital bisnis Anda</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:client@encryptdev.com" class="group px-10 py-5 bg-white text-purple-600 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center">
+                    <i class="fas fa-envelope mr-2"></i>
+                    <span>Email Kami</span>
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                </a>
+                <a href="https://wa.me/6285171106025" class="px-10 py-5 bg-transparent border-2 border-white rounded-full font-bold text-lg hover:bg-white hover:text-purple-600 transition-all flex items-center">
+                    <i class="fab fa-whatsapp text-2xl mr-2"></i>
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-gray-950">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-2">
+                    <h3 class="text-3xl font-black mb-4 text-gradient">PT Encrypt Digital Solution</h3>
+                    <p class="text-gray-400 mb-4">Solusi terbaik untuk kebutuhan digital Anda. Kami menghadirkan inovasi dalam setiap layanan.</p>
+                </div>
+
                 <div>
-                    <h3 class="text-lg font-semibold text-white">Ikuti Kami</h3>
-                    <div class="flex mt-3 space-x-4">
-                        {{-- <a href="#" class="text-gray-400 transition hover:text-white">
-                            <i class="text-xl fab fa-facebook"></i>
-                        </a> --}}
-                        {{-- <a href="#" class="text-gray-400 transition hover:text-white">
-                            <i class="text-xl fab fa-twitter"></i>
-                        </a> --}}
-                        <a href="https://www.instagram.com/encryptdevdigital/"
-                            class="text-gray-400 transition hover:text-white">
-                            <i class="text-xl fab fa-instagram"></i>
+                    <h4 class="font-bold mb-4 text-xl">Kontak</h4>
+                    <div class="space-y-3 text-gray-400 text-sm">
+                        <div class="flex items-center"><i class="fas fa-phone mr-3 text-blue-400"></i>0851-7110-6025</div>
+                        <div class="flex items-center"><i class="fas fa-envelope mr-3 text-blue-400"></i>client@encryptdev.com</div>
+                        <div class="flex items-start"><i class="fas fa-map-marker-alt mr-3 text-blue-400 mt-1"></i>Dsn Karang Nongko, Mojoranu, Sooko, Mojokerto</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold mb-4 text-xl">Ikuti Kami</h4>
+                    <div class="flex gap-3">
+                        <a href="https://www.instagram.com/encryptdevdigital/" class="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                            <i class="fab fa-instagram text-xl"></i>
                         </a>
-                        {{-- <a href="#" class="text-gray-400 transition hover:text-white">
-                            <i class="text-xl fab fa-linkedin"></i>
-                        </a> --}}
                     </div>
                 </div>
-
-                <!-- Kolom 4: Berlangganan Newsletter -->
-                {{-- <div>
-                    <h3 class="text-lg font-semibold text-white">Newsletter</h3>
-                    <p class="mt-2 text-sm text-gray-400">Dapatkan update terbaru langsung di email Anda.</p>
-                    <form class="flex mt-4">
-                        <input type="email" placeholder="Masukkan email"
-                            class="w-full px-4 py-2 text-gray-300 bg-gray-800 border border-gray-700 rounded-l-md focus:outline-none">
-                        <button
-                            class="px-4 py-2 text-white transition bg-blue-600 rounded-r-md hover:bg-blue-700">Kirim</button>
-                    </form>
-                </div> --}}
-
             </div>
 
-            <!-- Copyright -->
-            <div class="pt-5 mt-10 text-sm text-center text-gray-400 border-t border-gray-800">
-                © 2025 EncryptDev. All Rights Reserved.
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 EncryptDev. All Rights Reserved. Made with <i class="fas fa-heart text-red-500"></i> in Indonesia</p>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Carousel functionality
+        const carousels = {
+            project: {
+                currentIndex: 0,
+                track: null,
+                dots: null,
+                totalSlides: 0,
+                slidesPerView: 3
+            },
+            testimonial: {
+                currentIndex: 0,
+                track: null,
+                dots: null,
+                totalSlides: 0,
+                slidesPerView: 3
+            }
+        };
 
+        function initCarousel(type) {
+            const carousel = carousels[type];
+            carousel.track = document.getElementById(`${type}Carousel`);
+            carousel.dots = document.getElementById(`${type}Dots`);
+            carousel.totalSlides = carousel.track.children.length;
 
-    <script src="../../node_modules/fowbite/dist/flowbite.min.js"></script>
+            // Update slides per view based on screen size
+            function updateSlidesPerView() {
+                if (window.innerWidth < 768) {
+                    carousel.slidesPerView = 1;
+                } else if (window.innerWidth < 1024) {
+                    carousel.slidesPerView = 2;
+                } else {
+                    carousel.slidesPerView = 3;
+                }
+            }
+
+            updateSlidesPerView();
+            window.addEventListener('resize', updateSlidesPerView);
+
+            // Create dots
+            carousel.dots.innerHTML = '';
+            const totalDots = Math.ceil(carousel.totalSlides / carousel.slidesPerView);
+            for (let i = 0; i < totalDots; i++) {
+                const dot = document.createElement('button');
+                dot.className = `w-3 h-3 rounded-full transition-all ${i === 0 ? 'bg-blue-500 w-8' : 'bg-gray-600'}`;
+                dot.onclick = () => goToSlide(type, i);
+                carousel.dots.appendChild(dot);
+            }
+        }
+
+        function moveCarousel(type, direction) {
+            const carousel = carousels[type];
+            const maxIndex = Math.ceil(carousel.totalSlides / carousel.slidesPerView) - 1;
+
+            carousel.currentIndex += direction;
+
+            if (carousel.currentIndex < 0) {
+                carousel.currentIndex = maxIndex;
+            } else if (carousel.currentIndex > maxIndex) {
+                carousel.currentIndex = 0;
+            }
+
+            updateCarousel(type);
+        }
+
+        function goToSlide(type, index) {
+            carousels[type].currentIndex = index;
+            updateCarousel(type);
+        }
+
+        function updateCarousel(type) {
+            const carousel = carousels[type];
+            const slideWidth = 100 / carousel.slidesPerView;
+            const offset = -carousel.currentIndex * 100;
+
+            carousel.track.style.transform = `translateX(${offset}%)`;
+
+            // Update dots
+            Array.from(carousel.dots.children).forEach((dot, index) => {
+                if (index === carousel.currentIndex) {
+                    dot.className = 'w-8 h-3 rounded-full bg-blue-500 transition-all';
+                } else {
+                    dot.className = 'w-3 h-3 rounded-full bg-gray-600 transition-all';
+                }
+            });
+        }
+
+        // Initialize carousels
+        initCarousel('project');
+        initCarousel('testimonial');
+
+        // Auto-play carousels
+        setInterval(() => {
+            moveCarousel('project', 1);
+        }, 5000);
+
+        setInterval(() => {
+            moveCarousel('testimonial', 1);
+        }, 6000);
+    </script>
+
 </body>
-
-<script src="{{ asset('js/splide.min.js') }}"></script>
-<script>
-    var splide = new Splide('.splide', {
-        perPage: 3,
-        breakpoints: {
-            640: {
-                perPage: 1
-            }
-        }
-    });
-
-    splide.mount();
-
-    var splide2 = new Splide('#splideTesti', {
-        perPage: 2,
-        breakpoints: {
-            640: {
-                perPage: 1
-            }
-        }
-    });
-
-    splide2.mount();
-</script>
-
 </html>
