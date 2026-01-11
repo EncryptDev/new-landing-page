@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,66 +9,107 @@
     <script src="https://kit.fontawesome.com/a627a75623.js" crossorigin="anonymous"></script>
     <style>
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
         }
+
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
-            50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.8); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            }
+
+            50% {
+                box-shadow: 0 0 40px rgba(139, 92, 246, 0.8);
+            }
         }
+
         @keyframes gradient-shift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
+
         .gradient-bg {
             background: linear-gradient(-45deg, #0f172a, #1e293b, #312e81, #1e3a8a);
             background-size: 400% 400%;
             animation: gradient-shift 15s ease infinite;
         }
-        .floating { animation: float 6s ease-in-out infinite; }
-        .pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
         .glass {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .text-gradient {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
+
         .hover-lift {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
+
         .hover-lift:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
+
         .grid-pattern {
             background-image:
                 linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
             background-size: 50px 50px;
         }
+
         .carousel-container {
             overflow: hidden;
             position: relative;
         }
+
         .carousel-track {
             display: flex;
             transition: transform 0.5s ease;
         }
+
         .carousel-slide {
             min-width: 100%;
             padding: 0 1rem;
         }
+
         @media (min-width: 768px) {
             .carousel-slide {
                 min-width: 50%;
             }
         }
+
         @media (min-width: 1024px) {
             .carousel-slide {
                 min-width: 33.333%;
@@ -75,14 +117,67 @@
         }
     </style>
 </head>
+
 <body class="bg-gray-900 text-white overflow-x-hidden">
 
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-sm border-b border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <a href="{{ route('home') }}" class="text-xl font-bold text-white">
+                        Encrypt Digital
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="{{ route('home') }}" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Projects</a>
+                    <a href="#clients" class="text-gray-300 hover:text-white transition-colors">Clients</a>
+                    <a href="#team" class="text-gray-300 hover:text-white transition-colors">Team</a>
+                    <a href="{{ route('blog.index') }}"
+                        class="text-gray-300 hover:text-white transition-colors">Blog</a>
+                    <a href="mailto:client@encryptdev.com"
+                        class="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-semibold hover:scale-105 transition-transform">
+                        Contact
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-white">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
+            <div class="px-6 py-4 space-y-3">
+                <a href="{{ route('home') }}" class="block text-gray-300 hover:text-white transition-colors">Home</a>
+                <a href="#projects" class="block text-gray-300 hover:text-white transition-colors">Projects</a>
+                <a href="#clients" class="block text-gray-300 hover:text-white transition-colors">Clients</a>
+                <a href="#team" class="block text-gray-300 hover:text-white transition-colors">Team</a>
+                <a href="{{ route('blog.index') }}"
+                    class="block text-gray-300 hover:text-white transition-colors">Blog</a>
+                <a href="mailto:client@encryptdev.com"
+                    class="block px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-semibold text-center">
+                    Contact
+                </a>
+            </div>
+        </div>
+    </nav>
+
     <!-- Hero Section with Animated Background -->
-    <section class="relative min-h-screen gradient-bg grid-pattern overflow-hidden">
+    <section class="relative min-h-screen gradient-bg grid-pattern overflow-hidden pt-16">
         <!-- Floating Elements -->
-        <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating"></div>
-        <div class="absolute top-40 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating" style="animation-delay: 2s;"></div>
-        <div class="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating" style="animation-delay: 4s;"></div>
+        <div
+            class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating">
+        </div>
+        <div class="absolute top-40 right-10 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating"
+            style="animation-delay: 2s;"></div>
+        <div class="absolute bottom-20 left-1/3 w-80 h-80 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 floating"
+            style="animation-delay: 4s;"></div>
 
         <div class="relative z-10 container mx-auto px-6 pt-32 pb-20">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -97,17 +192,20 @@
                     </h1>
 
                     <p class="text-xl text-gray-300 leading-relaxed">
-                        Kami hadirkan solusi software custom yang mengoptimasi bisnis Anda dengan teknologi terkini. Cepat, efisien, dan tanpa ribet.
+                        Kami hadirkan solusi software custom yang mengoptimasi bisnis Anda dengan teknologi terkini.
+                        Cepat, efisien, dan tanpa ribet.
                     </p>
 
                     <div class="flex flex-wrap gap-4">
-                        <a href="mailto:client@encryptdev.com" class="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-bold text-lg overflow-hidden">
+                        <a href="mailto:client@encryptdev.com"
+                            class="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full font-bold text-lg overflow-hidden">
                             <span class="relative z-10 flex items-center">
                                 Mulai Konsultasi Gratis
                                 <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
                             </span>
                         </a>
-                        <a href="#projects" class="px-8 py-4 glass rounded-full font-bold text-lg hover:bg-white/10 transition-all">
+                        <a href="#projects"
+                            class="px-8 py-4 glass rounded-full font-bold text-lg hover:bg-white/10 transition-all">
                             Lihat Portfolio
                         </a>
                     </div>
@@ -133,7 +231,8 @@
                     <div class="pulse-glow rounded-2xl p-1">
                         <div class="glass rounded-2xl p-8">
                             <div class="space-y-4">
-                                <div class="flex items-center space-x-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 p-4 rounded-xl">
+                                <div
+                                    class="flex items-center space-x-4 bg-gradient-to-r from-blue-500/20 to-purple-500/20 p-4 rounded-xl">
                                     <div class="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-code text-2xl"></i>
                                     </div>
@@ -142,7 +241,8 @@
                                         <div class="h-2 bg-gray-700 rounded-full w-1/2 mt-2"></div>
                                     </div>
                                 </div>
-                                <div class="flex items-center space-x-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-4 rounded-xl">
+                                <div
+                                    class="flex items-center space-x-4 bg-gradient-to-r from-purple-500/20 to-pink-500/20 p-4 rounded-xl">
                                     <div class="w-12 h-12 bg-purple-500 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-mobile-alt text-2xl"></i>
                                     </div>
@@ -151,7 +251,8 @@
                                         <div class="h-2 bg-gray-700 rounded-full w-1/3 mt-2"></div>
                                     </div>
                                 </div>
-                                <div class="flex items-center space-x-4 bg-gradient-to-r from-pink-500/20 to-orange-500/20 p-4 rounded-xl">
+                                <div
+                                    class="flex items-center space-x-4 bg-gradient-to-r from-pink-500/20 to-orange-500/20 p-4 rounded-xl">
                                     <div class="w-12 h-12 bg-pink-500 rounded-lg flex items-center justify-center">
                                         <i class="fas fa-robot text-2xl"></i>
                                     </div>
@@ -166,26 +267,19 @@
                 </div>
             </div>
 
-            <!-- Trusted By -->
+            <!-- Trusted By Section - Replace the static logos section with this dynamic version -->
             <div class="mt-20">
                 <p class="text-center text-gray-400 mb-8">Dipercaya oleh perusahaan terkemuka</p>
                 <div class="flex flex-wrap justify-center items-center gap-8 lg:gap-12">
-                    <!-- Logo placeholder boxes with gradient backgrounds -->
-                    <div class="w-32 h-16 lg:w-40 lg:h-20  rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
-                        <img class="bg-white p-2 rounded-lg" src="{{ asset("images/yazaki.png") }}" alt="Logo yazzaki">
-                    </div>
-                    <div class="w-32 h-16 lg:w-40 lg:h-20 glass rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
-                        <div class="text-lg lg:text-xl font-black text-gray-300">TAREMAKMUR</div>
-                    </div>
-                    <div class="w-32 h-16 lg:w-40 lg:h-20  rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
-                        <img class="bg-white p-2 rounded-lg" src="{{ asset("images/naima.png") }}" alt="Naima">
-                    </div>
-                    <div class="w-12 h-12 lg:w-20 lg:h-20 glass rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
-                         <img class="bg-white p-2 rounded-lg" src="{{ asset("images/smkn2sekayu.png") }}" alt="SMA">
-                    </div>
-                      <div class="w-12 h-12 lg:w-20 lg:h-20 glass rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
-                         <img class="bg-white p-2 rounded-lg" src="{{ asset("images/janji-kembali.png") }}" alt="SMA">
-                    </div>
+                    @forelse($companies as $company)
+                        <div
+                            class="w-32 h-16 lg:w-40 lg:h-20 rounded-lg flex items-center justify-center hover:scale-110 transition-transform opacity-70 hover:opacity-100">
+                            <img class="bg-white p-2 rounded-lg max-h-full object-contain"
+                                src="{{ Storage::url($company->logo) }}" alt="{{ $company->name }}">
+                        </div>
+                    @empty
+                        <div class="text-gray-500">Belum ada company yang ditambahkan</div>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -211,7 +305,8 @@
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Service Card 1 -->
                 <div class="group glass rounded-2xl p-8 hover-lift cursor-pointer">
-                    <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fas fa-chalkboard-user text-3xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">IT Consultation</h3>
@@ -225,7 +320,8 @@
 
                 <!-- Service Card 2 -->
                 <div class="group glass rounded-2xl p-8 hover-lift cursor-pointer">
-                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fas fa-laptop-code text-3xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Software Development</h3>
@@ -239,7 +335,8 @@
 
                 <!-- Service Card 3 -->
                 <div class="group glass rounded-2xl p-8 hover-lift cursor-pointer">
-                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fas fa-globe text-3xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Website Development</h3>
@@ -253,7 +350,8 @@
 
                 <!-- Service Card 4 -->
                 <div class="group glass rounded-2xl p-8 hover-lift cursor-pointer">
-                    <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                         <i class="fas fa-robot text-3xl"></i>
                     </div>
                     <h3 class="text-2xl font-bold mb-4">Internet of Things</h3>
@@ -280,126 +378,60 @@
                 </p>
             </div>
 
+            <!-- Projects Carousel Section - Replace the static carousel content -->
             <div class="carousel-container max-w-7xl mx-auto">
                 <div class="carousel-track" id="projectCarousel">
-                    <!-- Project 1 -->
-                    <div class="carousel-slide">
-                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
-                            <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-                                <i class="fas fa-shopping-cart text-6xl opacity-50"></i>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Management Sales</h3>
-                                <p class="text-gray-400 text-sm mb-4">Sistem mobile dan web untuk manajemen transaksi bisnis</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-red-500/20 text-red-300 text-xs rounded-full">Laravel</span>
-                                    <span class="px-3 py-1 bg-green-500/20 text-green-300 text-xs rounded-full">Kotlin</span>
-                                    <span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">MySQL</span>
+                    @forelse($projects as $project)
+                        <div class="carousel-slide">
+                            <a href="{{ route('projects.show', $project->slug) }}" class="block">
+                                <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
+                                    @if ($project->image)
+                                        <div class="h-48 overflow-hidden">
+                                            <img src="{{ Storage::url($project->image) }}" alt="{{ $project->title }}"
+                                                class="w-full h-full object-cover">
+                                        </div>
+                                    @else
+                                        <div
+                                            class="h-48 bg-gradient-to-br from-{{ $project->gradient_from }} to-{{ $project->gradient_to }} flex items-center justify-center">
+                                            <i class="fas {{ $project->icon }} text-6xl opacity-50"></i>
+                                        </div>
+                                    @endif
+                                    <div class="p-6">
+                                        <h3 class="text-xl font-bold mb-2">{{ $project->title }}</h3>
+                                        <p class="text-gray-400 text-sm mb-4">{{ $project->short_description }}</p>
+                                        @if ($project->technologies)
+                                            <div class="flex flex-wrap gap-2">
+                                                @foreach ($project->technologies as $tech)
+                                                    <span
+                                                        class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">
+                                                        {{ $tech }}
+                                                    </span>
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
-                    </div>
-
-                    <!-- Project 2 -->
-                    <div class="carousel-slide">
-                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
-                            <div class="h-48 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
-                                <i class="fas fa-brain text-6xl opacity-50"></i>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">AI Self Learning</h3>
-                                <p class="text-gray-400 text-sm mb-4">Chatbot lokal offline untuk tanya jawab otomatis</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-full">Next.js</span>
-                                    <span class="px-3 py-1 bg-green-500/20 text-green-300 text-xs rounded-full">FastAPI</span>
-                                    <span class="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full">PostgreSQL</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 -->
-                    <div class="carousel-slide">
-                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
-                            <div class="h-48 bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center">
-                                <i class="fas fa-briefcase text-6xl opacity-50"></i>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Landing Page Pro</h3>
-                                <p class="text-gray-400 text-sm mb-4">Landing page company dengan blog dan jobs portal</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-red-500/20 text-red-300 text-xs rounded-full">Laravel</span>
-                                    <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 text-xs rounded-full">FrankenPHP</span>
-                                    <span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">MySQL</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 4 -->
-                    <div class="carousel-slide">
-                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
-                            <div class="h-48 bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center">
-                                <i class="fas fa-barcode text-6xl opacity-50"></i>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Auto Scan IoT</h3>
-                                <p class="text-gray-400 text-sm mb-4">Aplikasi scan otomatis barcode untuk stock system</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-full">Next.js</span>
-                                    <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 text-xs rounded-full">MySQL</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 5 -->
-                    <div class="carousel-slide">
-                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
-                            <div class="h-48 bg-gradient-to-br from-indigo-600 to-blue-600 flex items-center justify-center">
-                                <i class="fas fa-file-signature text-6xl opacity-50"></i>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Electronics PO</h3>
-                                <p class="text-gray-400 text-sm mb-4">Sistem e-sign dan kirim purchase order otomatis ke supplier</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-red-500/20 text-red-300 text-xs rounded-full">Laravel</span>
-                                    <span class="px-3 py-1 bg-pink-500/20 text-pink-300 text-xs rounded-full">Livewire</span>
-                                    <span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">MySQL</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 6 -->
-                    <div class="carousel-slide">
-                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
-                            <div class="h-48 bg-gradient-to-br from-yellow-600 to-orange-600 flex items-center justify-center">
-                                <i class="fas fa-mobile-screen text-6xl opacity-50"></i>
-                            </div>
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Mobile Self Service</h3>
-                                <p class="text-gray-400 text-sm mb-4">Sistem untuk menerima pesanan pelanggan melalui smartphone</p>
-                                <div class="flex flex-wrap gap-2">
-                                    <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-full">React Native</span>
-                                    <span class="px-3 py-1 bg-pink-500/20 text-pink-300 text-xs rounded-full">NestJs</span>
-                                    <span class="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full">PostgreSQL</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @empty
+                        <div class="text-center text-gray-500 py-8">Belum ada project yang ditambahkan</div>
+                    @endforelse
                 </div>
 
                 <!-- Carousel Controls -->
-                <div class="flex justify-center items-center gap-4 mt-8">
-                    <button onclick="moveCarousel('project', -1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div id="projectDots" class="flex gap-2"></div>
-                    <button onclick="moveCarousel('project', 1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
+                @if ($projects->count() > 0)
+                    <div class="flex justify-center items-center gap-4 mt-8">
+                        <button onclick="moveCarousel('project', -1)"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div id="projectDots" class="flex gap-2"></div>
+                        <button onclick="moveCarousel('project', 1)"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
@@ -416,88 +448,61 @@
                 </p>
             </div>
 
+            <!-- Testimonials Carousel Section - Replace the static testimonials -->
             <div class="carousel-container max-w-7xl mx-auto">
                 <div class="carousel-track" id="testimonialCarousel">
-                    <!-- Testimonial 1 -->
-                    <div class="carousel-slide">
-                        <div class="glass rounded-2xl p-8 hover-lift h-full">
-                            <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4 text-2xl font-bold">
-                                    ID
+                    @forelse($testimonials as $testimonial)
+                        <div class="carousel-slide">
+                            <div class="glass rounded-2xl p-8 hover-lift h-full">
+                                <div class="flex items-center mb-6">
+                                    @if ($testimonial->avatar)
+                                        <img src="{{ Storage::url($testimonial->avatar) }}"
+                                            alt="{{ $testimonial->name }}"
+                                            class="w-16 h-16 rounded-full object-cover mr-4">
+                                    @else
+                                        <div
+                                            class="w-16 h-16 bg-gradient-to-br from-{{ $testimonial->gradient_from }} to-{{ $testimonial->gradient_to }} rounded-full flex items-center justify-center mr-4 text-2xl font-bold">
+                                            {{ $testimonial->initials }}
+                                        </div>
+                                    @endif
+                                    <div>
+                                        <h4 class="text-xl font-bold">{{ $testimonial->name }}</h4>
+                                        <p class="text-sm text-gray-400">{{ $testimonial->company }}</p>
+                                        @if ($testimonial->position)
+                                            <p class="text-xs text-gray-500">{{ $testimonial->position }}</p>
+                                        @endif
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 class="text-xl font-bold">Indra</h4>
-                                    <p class="text-sm text-gray-400">Taremakmur</p>
+                                <p class="text-gray-300 italic mb-4">"{{ $testimonial->testimonial }}"</p>
+                                <div class="flex text-yellow-400 text-xl">
+                                    @for ($i = 0; $i < $testimonial->rating; $i++)
+                                        <i class="fas fa-star"></i>
+                                    @endfor
+                                    @for ($i = $testimonial->rating; $i < 5; $i++)
+                                        <i class="far fa-star"></i>
+                                    @endfor
                                 </div>
-                            </div>
-                            <p class="text-gray-300 italic mb-4">"Encrypt Digital Solution memberikan solusi yang sempurna untuk digitalisasi bisnis kami. Highly recommended!"</p>
-                            <div class="flex text-yellow-400 text-xl">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Testimonial 2 -->
-                    <div class="carousel-slide">
-                        <div class="glass rounded-2xl p-8 hover-lift h-full">
-                            <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-blue-600 rounded-full flex items-center justify-center mr-4 text-2xl font-bold">
-                                    KH
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold">Khoiron</h4>
-                                    <p class="text-sm text-gray-400">Janji Kembali</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 italic mb-4">"Tim yang sangat profesional dan hasil yang memuaskan. Proses development sangat transparan dan komunikatif."</p>
-                            <div class="flex text-yellow-400 text-xl">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial 3 -->
-                    <div class="carousel-slide">
-                        <div class="glass rounded-2xl p-8 hover-lift h-full">
-                            <div class="flex items-center mb-6">
-                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4 text-2xl font-bold">
-                                    FS
-                                </div>
-                                <div>
-                                    <h4 class="text-xl font-bold">Faisal</h4>
-                                    <p class="text-sm text-gray-400">Naim</p>
-                                </div>
-                            </div>
-                            <p class="text-gray-300 italic mb-4">"Kualitas code dan dokumentasi yang sangat baik. Maintenance jadi lebih mudah dan sistem berjalan sangat stabil."</p>
-                            <div class="flex text-yellow-400 text-xl">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
+                    @empty
+                        <div class="text-center text-gray-500 py-8">Belum ada testimonial yang ditambahkan</div>
+                    @endforelse
                 </div>
 
                 <!-- Carousel Controls -->
-                <div class="flex justify-center items-center gap-4 mt-8">
-                    <button onclick="moveCarousel('testimonial', -1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <div id="testimonialDots" class="flex gap-2"></div>
-                    <button onclick="moveCarousel('testimonial', 1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                </div>
+                @if ($testimonials->count() > 0)
+                    <div class="flex justify-center items-center gap-4 mt-8">
+                        <button onclick="moveCarousel('testimonial', -1)"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div id="testimonialDots" class="flex gap-2"></div>
+                        <button onclick="moveCarousel('testimonial', 1)"
+                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                @endif
             </div>
 
             <!-- Client Statistics -->
@@ -536,26 +541,34 @@
 
             <div class="max-w-5xl mx-auto relative">
                 <!-- Timeline Line for Desktop -->
-                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 hidden lg:block"></div>
+                <div
+                    class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 hidden lg:block">
+                </div>
 
                 <!-- Timeline Line for Mobile -->
-                <div class="absolute left-6 top-0 w-1 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 lg:hidden"></div>
+                <div
+                    class="absolute left-6 top-0 w-1 h-full bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 lg:hidden">
+                </div>
 
                 <!-- Timeline Items -->
                 <div class="space-y-8 lg:space-y-12">
                     <!-- Timeline 1 -->
                     <div class="flex flex-row lg:flex-row items-start lg:items-center gap-4 lg:gap-8">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center z-10 flex-shrink-0 lg:hidden">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center z-10 flex-shrink-0 lg:hidden">
                             <i class="fas fa-rocket text-xl"></i>
                         </div>
                         <div class="flex-1 lg:text-right">
                             <div class="glass rounded-2xl p-4 lg:p-6 hover-lift">
                                 <h3 class="text-xl lg:text-2xl font-bold mb-2">Pertama Beroperasi</h3>
-                                <p class="text-blue-400 font-semibold mb-2 lg:mb-4 text-sm lg:text-base">3 Maret 2021</p>
-                                <p class="text-gray-400 text-sm lg:text-base">Pertama kali dengan nama Encrypt Multimedia khusus untuk menangani percetakan dan konten Multimedia</p>
+                                <p class="text-blue-400 font-semibold mb-2 lg:mb-4 text-sm lg:text-base">3 Maret 2021
+                                </p>
+                                <p class="text-gray-400 text-sm lg:text-base">Pertama kali dengan nama Encrypt
+                                    Multimedia khusus untuk menangani percetakan dan konten Multimedia</p>
                             </div>
                         </div>
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full items-center justify-center z-10 flex-shrink-0 hidden lg:flex">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full items-center justify-center z-10 flex-shrink-0 hidden lg:flex">
                             <i class="fas fa-rocket text-xl"></i>
                         </div>
                         <div class="flex-1 hidden lg:block"></div>
@@ -563,42 +576,51 @@
 
                     <!-- Timeline 2 -->
                     <div class="flex flex-row lg:flex-row items-start lg:items-center gap-4 lg:gap-8">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center z-10 flex-shrink-0 lg:hidden">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center z-10 flex-shrink-0 lg:hidden">
                             <i class="fas fa-sync text-xl"></i>
                         </div>
                         <div class="flex-1 lg:hidden">
                             <div class="glass rounded-2xl p-4 hover-lift">
                                 <h3 class="text-xl font-bold mb-2">Changing Focus</h3>
                                 <p class="text-purple-400 font-semibold mb-2 text-sm">21 Januari 2022</p>
-                                <p class="text-gray-400 text-sm">Berganti fokus dan nama menjadi EncryptDev. Berfokus untuk melayani Solusi IT untuk Bisnis</p>
+                                <p class="text-gray-400 text-sm">Berganti fokus dan nama menjadi EncryptDev. Berfokus
+                                    untuk melayani Solusi IT untuk Bisnis</p>
                             </div>
                         </div>
                         <div class="flex-1 hidden lg:block"></div>
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full items-center justify-center z-10 flex-shrink-0 hidden lg:flex">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full items-center justify-center z-10 flex-shrink-0 hidden lg:flex">
                             <i class="fas fa-sync text-xl"></i>
                         </div>
                         <div class="flex-1 hidden lg:block">
                             <div class="glass rounded-2xl p-6 hover-lift">
                                 <h3 class="text-2xl font-bold mb-2">Changing Focus</h3>
                                 <p class="text-purple-400 font-semibold mb-4">21 Januari 2022</p>
-                                <p class="text-gray-400">Berganti fokus dan nama menjadi EncryptDev. Berfokus untuk melayani Solusi IT untuk Bisnis</p>
+                                <p class="text-gray-400">Berganti fokus dan nama menjadi EncryptDev. Berfokus untuk
+                                    melayani Solusi IT untuk Bisnis</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- Timeline 3 -->
                     <div class="flex flex-row lg:flex-row items-start lg:items-center gap-4 lg:gap-8">
-                        <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center z-10 flex-shrink-0 lg:hidden">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center z-10 flex-shrink-0 lg:hidden">
                             <i class="fas fa-certificate text-xl"></i>
                         </div>
                         <div class="flex-1 lg:text-right">
                             <div class="glass rounded-2xl p-4 lg:p-6 hover-lift">
                                 <h3 class="text-xl lg:text-2xl font-bold mb-2">Legality</h3>
-                                <p class="text-pink-400 font-semibold mb-2 lg:mb-4 text-sm lg:text-base">7 Desember 2024</p>
-                                <p class="text-gray-400 text-sm lg:text-base">EncryptDev sekarang berada di bawah PT Encrypt Digital Solution. Untuk siap menjalin kerja sama lebih luas dan profesional</p>
+                                <p class="text-pink-400 font-semibold mb-2 lg:mb-4 text-sm lg:text-base">7 Desember
+                                    2024</p>
+                                <p class="text-gray-400 text-sm lg:text-base">EncryptDev sekarang berada di bawah PT
+                                    Encrypt Digital Solution. Untuk siap menjalin kerja sama lebih luas dan profesional
+                                </p>
                             </div>
                         </div>
-                        <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full items-center justify-center z-10 flex-shrink-0 hidden lg:flex">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full items-center justify-center z-10 flex-shrink-0 hidden lg:flex">
                             <i class="fas fa-certificate text-xl"></i>
                         </div>
                         <div class="flex-1 hidden lg:block"></div>
@@ -607,6 +629,81 @@
             </div>
         </div>
     </section>
+
+    <section id="blog" class="py-24 bg-gray-900">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl font-black mb-6">
+                Latest <span class="text-gradient">Insights</span>
+            </h2>
+            <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                Tips, tutorial, dan insight terbaru seputar teknologi dan digital transformation
+            </p>
+        </div>
+
+        @if(isset($blogPosts) && $blogPosts->count() > 0)
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                @foreach($blogPosts as $post)
+                    <a href="{{ route('blog.show', $post->slug) }}" class="block group">
+                        <article class="glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
+                            @if($post->featured_image)
+                                <div class="h-48 overflow-hidden">
+                                    <img src="{{ Storage::url($post->featured_image) }}"
+                                         alt="{{ $post->title }}"
+                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                                </div>
+                            @else
+                                <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+                                    <i class="fas fa-file-alt text-6xl opacity-50"></i>
+                                </div>
+                            @endif
+
+                            <div class="p-6">
+                                <div class="flex items-center text-xs text-gray-400 mb-3">
+                                    <i class="fas fa-calendar mr-2"></i>
+                                    {{ $post->published_at->format('d M Y') }}
+                                    <span class="mx-2">•</span>
+                                    <i class="fas fa-eye mr-2"></i>
+                                    {{ $post->views }}
+                                </div>
+
+                                <h3 class="text-xl font-bold mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors">
+                                    {{ $post->title }}
+                                </h3>
+                                <p class="text-gray-400 text-sm mb-4 line-clamp-3">{{ $post->excerpt }}</p>
+
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm text-gray-500">
+                                        <i class="fas fa-user mr-1"></i>
+                                        {{ $post->author->name }}
+                                    </span>
+                                    <span class="text-blue-400 text-sm font-semibold group-hover:translate-x-2 transition-transform inline-block">
+                                        Read →
+                                    </span>
+                                </div>
+                            </div>
+                        </article>
+                    </a>
+                @endforeach
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="{{ route('blog.index') }}" class="inline-flex items-center px-8 py-4 glass rounded-full font-bold text-lg hover:bg-white/10 transition-all group">
+                    Lihat Semua Artikel
+                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
+                </a>
+            </div>
+        @else
+            <div class="text-center py-12">
+                <i class="fas fa-inbox text-5xl text-gray-600 mb-4"></i>
+                <p class="text-gray-500 text-lg">Belum ada artikel yang dipublikasikan</p>
+                <a href="{{ route('blog.index') }}" class="inline-block mt-4 text-blue-400 hover:underline">
+                    Kunjungi halaman blog
+                </a>
+            </div>
+        @endif
+    </div>
+</section>
 
     <!-- Team Section -->
     <section id="team" class="py-24 bg-gray-900">
@@ -621,67 +718,38 @@
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto mb-8">
                     Team kami siap membantu permasalahan digital pada bisnis Anda. Hubungi kami untuk diskusi langsung
                 </p>
-                <a href="https://wa.me/6285171106025" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-bold text-lg hover:scale-105 transition-transform">
+                <a href="https://wa.me/6285171106025"
+                    class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full font-bold text-lg hover:scale-105 transition-transform">
                     <i class="fab fa-whatsapp text-2xl mr-2"></i>
                     Book a Call
                 </a>
             </div>
 
+            <!-- Team Section - Replace the static team grid -->
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
-                <!-- Team Member 1 -->
-                <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
-                    <div class="h-80 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-                        <img src="{{ asset("images/bayu2.jpg") }}" class="object-cover h-80">
+                @forelse($teamMembers as $member)
+                    <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
+                        @if ($member->photo)
+                            <div class="h-80 overflow-hidden">
+                                <img src="{{ Storage::url($member->photo) }}" alt="{{ $member->name }}"
+                                    class="object-cover h-80 w-full">
+                            </div>
+                        @else
+                            <div
+                                class="h-80 bg-gradient-to-br from-{{ $member->gradient_from }} to-{{ $member->gradient_to }} flex items-center justify-center">
+                                <i class="fas fa-user text-6xl opacity-50"></i>
+                            </div>
+                        @endif
+                        <div
+                            class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
+                            <h4 class="font-bold text-lg">{{ $member->name }}</h4>
+                            <p class="text-sm text-gray-400">{{ $member->position }}</p>
+                        </div>
                     </div>
-                    <div class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
-                        <h4 class="font-bold text-lg">Bayu Febriyono</h4>
-                        <p class="text-sm text-gray-400">Fullstack Developer</p>
+                @empty
+                    <div class="col-span-full text-center text-gray-500 py-8">Belum ada team member yang ditambahkan
                     </div>
-                </div>
-
-                <!-- Team Member 2 -->
-                <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
-                    <div class="h-80 bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center">
-                      <img src="{{ asset("images/ragil.jpg") }}" class="object-cover h-80">
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
-                        <h4 class="font-bold text-lg">Ragil Ridho</h4>
-                        <p class="text-sm text-gray-400">Frontend Developer</p>
-                    </div>
-                </div>
-
-                <!-- Team Member 3 -->
-                <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
-                    <div class="h-80 bg-gradient-to-br from-pink-600 to-orange-600 flex items-center justify-center">
-                       <img src="{{ asset("images/dewangga.jpg") }}" class="object-cover h-80">
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
-                        <h4 class="font-bold text-lg">Dewangga Wahyu</h4>
-                        <p class="text-sm text-gray-400">Backend Developer</p>
-                    </div>
-                </div>
-
-                <!-- Team Member 4 -->
-                <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
-                    <div class="h-80 bg-gradient-to-br from-orange-600 to-yellow-600 flex items-center justify-center">
-                        <img src="{{ asset("images/dugi.jpg") }}" class="object-cover h-80">
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
-                        <h4 class="font-bold text-lg">Dugi Mulio</h4>
-                        <p class="text-sm text-gray-400">System Analyst</p>
-                    </div>
-                </div>
-
-                <!-- Team Member 5 -->
-                <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
-                    <div class="h-80 bg-gradient-to-br from-green-600 to-emerald-600 flex items-center justify-center">
-                       <img src="{{ asset("images/anas.png") }}" class="object-cover h-80">
-                    </div>
-                    <div class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
-                        <h4 class="font-bold text-lg">Pirgianas Surya</h4>
-                        <p class="text-sm text-gray-400">UI/UX Designer</p>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -690,19 +758,23 @@
     <section class="py-24 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 relative overflow-hidden">
         <div class="absolute inset-0 opacity-10">
             <div class="absolute top-0 left-0 w-96 h-96 bg-white rounded-full filter blur-3xl floating"></div>
-            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full filter blur-3xl floating" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full filter blur-3xl floating"
+                style="animation-delay: 2s;"></div>
         </div>
 
         <div class="container mx-auto px-6 text-center relative z-10">
             <h2 class="text-5xl lg:text-6xl font-black mb-6">Siap Transformasi Digital?</h2>
-            <p class="text-2xl mb-12 opacity-90 max-w-3xl mx-auto">Hubungi kami sekarang untuk konsultasi gratis dan mulai perjalanan digital bisnis Anda</p>
+            <p class="text-2xl mb-12 opacity-90 max-w-3xl mx-auto">Hubungi kami sekarang untuk konsultasi gratis dan
+                mulai perjalanan digital bisnis Anda</p>
             <div class="flex flex-wrap justify-center gap-4">
-                <a href="mailto:client@encryptdev.com" class="group px-10 py-5 bg-white text-purple-600 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center">
+                <a href="mailto:client@encryptdev.com"
+                    class="group px-10 py-5 bg-white text-purple-600 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center">
                     <i class="fas fa-envelope mr-2"></i>
                     <span>Email Kami</span>
                     <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
                 </a>
-                <a href="https://wa.me/6285171106025" class="px-10 py-5 bg-transparent border-2 border-white rounded-full font-bold text-lg hover:bg-white hover:text-purple-600 transition-all flex items-center">
+                <a href="https://wa.me/6285171106025"
+                    class="px-10 py-5 bg-transparent border-2 border-white rounded-full font-bold text-lg hover:bg-white hover:text-purple-600 transition-all flex items-center">
                     <i class="fab fa-whatsapp text-2xl mr-2"></i>
                     WhatsApp
                 </a>
@@ -716,22 +788,27 @@
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div class="col-span-2">
                     <h3 class="text-3xl font-black mb-4 text-gradient">PT Encrypt Digital Solution</h3>
-                    <p class="text-gray-400 mb-4">Solusi terbaik untuk kebutuhan digital Anda. Kami menghadirkan inovasi dalam setiap layanan.</p>
+                    <p class="text-gray-400 mb-4">Solusi terbaik untuk kebutuhan digital Anda. Kami menghadirkan
+                        inovasi dalam setiap layanan.</p>
                 </div>
 
                 <div>
                     <h4 class="font-bold mb-4 text-xl">Kontak</h4>
                     <div class="space-y-3 text-gray-400 text-sm">
-                        <div class="flex items-center"><i class="fas fa-phone mr-3 text-blue-400"></i>0851-7110-6025</div>
-                        <div class="flex items-center"><i class="fas fa-envelope mr-3 text-blue-400"></i>client@encryptdev.com</div>
-                        <div class="flex items-start"><i class="fas fa-map-marker-alt mr-3 text-blue-400 mt-1"></i>Dsn Karang Nongko, Mojoranu, Sooko, Mojokerto</div>
+                        <div class="flex items-center"><i class="fas fa-phone mr-3 text-blue-400"></i>0851-7110-6025
+                        </div>
+                        <div class="flex items-center"><i
+                                class="fas fa-envelope mr-3 text-blue-400"></i>client@encryptdev.com</div>
+                        <div class="flex items-start"><i class="fas fa-map-marker-alt mr-3 text-blue-400 mt-1"></i>Dsn
+                            Karang Nongko, Mojoranu, Sooko, Mojokerto</div>
                     </div>
                 </div>
 
                 <div>
                     <h4 class="font-bold mb-4 text-xl">Ikuti Kami</h4>
                     <div class="flex gap-3">
-                        <a href="https://www.instagram.com/encryptdevdigital/" class="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                        <a href="https://www.instagram.com/encryptdevdigital/"
+                            class="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
                             <i class="fab fa-instagram text-xl"></i>
                         </a>
                     </div>
@@ -739,7 +816,8 @@
             </div>
 
             <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-                <p>© 2025 EncryptDev. All Rights Reserved. Made with <i class="fas fa-heart text-red-500"></i> in Indonesia</p>
+                <p>© 2025 EncryptDev. All Rights Reserved. Made with <i class="fas fa-heart text-red-500"></i> in
+                    Indonesia</p>
             </div>
         </div>
     </footer>
@@ -845,5 +923,29 @@
         }, 6000);
     </script>
 
+    <script>
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+
 </body>
+
 </html>
