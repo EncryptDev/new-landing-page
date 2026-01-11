@@ -631,79 +631,83 @@
     </section>
 
     <section id="blog" class="py-24 bg-gray-900">
-    <div class="container mx-auto px-6">
-        <div class="text-center mb-16">
-            <h2 class="text-5xl font-black mb-6">
-                Latest <span class="text-gradient">Insights</span>
-            </h2>
-            <p class="text-xl text-gray-400 max-w-3xl mx-auto">
-                Tips, tutorial, dan insight terbaru seputar teknologi dan digital transformation
-            </p>
-        </div>
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black mb-6">
+                    Latest <span class="text-gradient">Insights</span>
+                </h2>
+                <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+                    Tips, tutorial, dan insight terbaru seputar teknologi dan digital transformation
+                </p>
+            </div>
 
-        @if(isset($blogPosts) && $blogPosts->count() > 0)
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                @foreach($blogPosts as $post)
-                    <a href="{{ route('blog.show', $post->slug) }}" class="block group">
-                        <article class="glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
-                            @if($post->featured_image)
-                                <div class="h-48 overflow-hidden">
-                                    <img src="{{ Storage::url($post->featured_image) }}"
-                                         alt="{{ $post->title }}"
-                                         class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
-                                </div>
-                            @else
-                                <div class="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
-                                    <i class="fas fa-file-alt text-6xl opacity-50"></i>
-                                </div>
-                            @endif
+            @if (isset($blogPosts) && $blogPosts->count() > 0)
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                    @foreach ($blogPosts as $post)
+                        <a href="{{ route('blog.show', $post->slug) }}" class="block group">
+                            <article class="glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
+                                @if ($post->featured_image)
+                                    <div class="h-48 overflow-hidden">
+                                        <img src="{{ Storage::url($post->featured_image) }}"
+                                            alt="{{ $post->title }}"
+                                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                                    </div>
+                                @else
+                                    <div
+                                        class="h-48 bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center">
+                                        <i class="fas fa-file-alt text-6xl opacity-50"></i>
+                                    </div>
+                                @endif
 
-                            <div class="p-6">
-                                <div class="flex items-center text-xs text-gray-400 mb-3">
-                                    <i class="fas fa-calendar mr-2"></i>
-                                    {{ $post->published_at->format('d M Y') }}
-                                    <span class="mx-2">•</span>
-                                    <i class="fas fa-eye mr-2"></i>
-                                    {{ $post->views }}
-                                </div>
+                                <div class="p-6">
+                                    <div class="flex items-center text-xs text-gray-400 mb-3">
+                                        <i class="fas fa-calendar mr-2"></i>
+                                        {{ $post->published_at->format('d M Y') }}
+                                        <span class="mx-2">•</span>
+                                        <i class="fas fa-eye mr-2"></i>
+                                        {{ $post->views }}
+                                    </div>
 
-                                <h3 class="text-xl font-bold mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors">
-                                    {{ $post->title }}
-                                </h3>
-                                <p class="text-gray-400 text-sm mb-4 line-clamp-3">{{ $post->excerpt }}</p>
+                                    <h3
+                                        class="text-xl font-bold mb-3 line-clamp-2 group-hover:text-blue-400 transition-colors">
+                                        {{ $post->title }}
+                                    </h3>
+                                    <p class="text-gray-400 text-sm mb-4 line-clamp-3">{{ $post->excerpt }}</p>
 
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm text-gray-500">
-                                        <i class="fas fa-user mr-1"></i>
-                                        {{ $post->author->name }}
-                                    </span>
-                                    <span class="text-blue-400 text-sm font-semibold group-hover:translate-x-2 transition-transform inline-block">
-                                        Read →
-                                    </span>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm text-gray-500">
+                                            <i class="fas fa-user mr-1"></i>
+                                            {{ $post->author->name }}
+                                        </span>
+                                        <span
+                                            class="text-blue-400 text-sm font-semibold group-hover:translate-x-2 transition-transform inline-block">
+                                            Read →
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </article>
+                            </article>
+                        </a>
+                    @endforeach
+                </div>
+
+                <div class="text-center mt-12">
+                    <a href="{{ route('blog.index') }}"
+                        class="inline-flex items-center px-8 py-4 glass rounded-full font-bold text-lg hover:bg-white/10 transition-all group">
+                        Lihat Semua Artikel
+                        <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
                     </a>
-                @endforeach
-            </div>
-
-            <div class="text-center mt-12">
-                <a href="{{ route('blog.index') }}" class="inline-flex items-center px-8 py-4 glass rounded-full font-bold text-lg hover:bg-white/10 transition-all group">
-                    Lihat Semua Artikel
-                    <i class="fas fa-arrow-right ml-2 group-hover:translate-x-2 transition-transform"></i>
-                </a>
-            </div>
-        @else
-            <div class="text-center py-12">
-                <i class="fas fa-inbox text-5xl text-gray-600 mb-4"></i>
-                <p class="text-gray-500 text-lg">Belum ada artikel yang dipublikasikan</p>
-                <a href="{{ route('blog.index') }}" class="inline-block mt-4 text-blue-400 hover:underline">
-                    Kunjungi halaman blog
-                </a>
-            </div>
-        @endif
-    </div>
-</section>
+                </div>
+            @else
+                <div class="text-center py-12">
+                    <i class="fas fa-inbox text-5xl text-gray-600 mb-4"></i>
+                    <p class="text-gray-500 text-lg">Belum ada artikel yang dipublikasikan</p>
+                    <a href="{{ route('blog.index') }}" class="inline-block mt-4 text-blue-400 hover:underline">
+                        Kunjungi halaman blog
+                    </a>
+                </div>
+            @endif
+        </div>
+    </section>
 
     <!-- Team Section -->
     <section id="team" class="py-24 bg-gray-900">
@@ -726,28 +730,55 @@
             </div>
 
             <!-- Team Section - Replace the static team grid -->
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+            <div
+                class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6 max-w-7xl mx-auto px-4">
                 @forelse($teamMembers as $member)
-                    <div class="group relative overflow-hidden rounded-2xl hover-lift cursor-pointer">
-                        @if ($member->photo)
-                            <div class="h-80 overflow-hidden">
+                    <div
+                        class="group relative overflow-hidden rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                        {{-- Photo Container --}}
+                        <div class="aspect-[3/4] relative overflow-hidden bg-gray-100">
+                            @if ($member->photo)
                                 <img src="{{ Storage::url($member->photo) }}" alt="{{ $member->name }}"
-                                    class="object-cover h-80 w-full">
-                            </div>
-                        @else
+                                    class="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-500">
+                            @else
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-br from-{{ $member->gradient_from }} to-{{ $member->gradient_to }} flex items-center justify-center">
+                                    <i class="fas fa-user text-4xl md:text-6xl text-white/30"></i>
+                                </div>
+                            @endif
+
+                            {{-- Overlay Gradient --}}
                             <div
-                                class="h-80 bg-gradient-to-br from-{{ $member->gradient_from }} to-{{ $member->gradient_to }} flex items-center justify-center">
-                                <i class="fas fa-user text-6xl opacity-50"></i>
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             </div>
-                        @endif
+                        </div>
+
+                        {{-- Info Container --}}
                         <div
-                            class="absolute bottom-0 left-0 right-0 glass p-4 transform translate-y-full group-hover:translate-y-0 transition-transform">
-                            <h4 class="font-bold text-lg">{{ $member->name }}</h4>
-                            <p class="text-sm text-gray-400">{{ $member->position }}</p>
+                            class="absolute bottom-0 left-0 right-0 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm p-3 md:p-4 transform translate-y-0 transition-all duration-300">
+                            <h4
+                                class="font-bold text-sm md:text-base lg:text-lg text-gray-900 dark:text-white truncate">
+                                {{ $member->name }}
+                            </h4>
+                            <p class="text-xs md:text-sm text-gray-600 dark:text-gray-400 truncate">
+                                {{ $member->position }}
+                            </p>
+                        </div>
+
+                        {{-- Hover Effect Border --}}
+                        <div
+                            class="absolute inset-0 border-2 border-transparent group-hover:border-blue-500 rounded-xl md:rounded-2xl transition-colors duration-300 pointer-events-none">
                         </div>
                     </div>
                 @empty
-                    <div class="col-span-full text-center text-gray-500 py-8">Belum ada team member yang ditambahkan
+                    <div class="col-span-full text-center py-12 md:py-16">
+                        <div
+                            class="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-gray-100 dark:bg-gray-800 mb-4">
+                            <i class="fas fa-users text-2xl md:text-3xl text-gray-400"></i>
+                        </div>
+                        <p class="text-gray-500 dark:text-gray-400 text-sm md:text-base">
+                            Belum ada team member yang ditambahkan
+                        </p>
                     </div>
                 @endforelse
             </div>
