@@ -379,60 +379,65 @@
             </div>
 
             <!-- Projects Carousel Section - Replace the static carousel content -->
-            <div class="carousel-container max-w-7xl mx-auto">
-                <div class="carousel-track" id="projectCarousel">
-                    @forelse($projects as $project)
-                        <div class="carousel-slide">
-                            <a href="{{ route('projects.show', $project->slug) }}" class="block">
-                                <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
-                                    @if ($project->image)
-                                        <div class="h-48 overflow-hidden">
-                                            <img src="{{ Storage::url($project->image) }}" alt="{{ $project->title }}"
-                                                class="w-full h-full object-cover">
-                                        </div>
-                                    @else
-                                        <div
-                                            class="h-48 bg-gradient-to-br from-{{ $project->gradient_from }} to-{{ $project->gradient_to }} flex items-center justify-center">
-                                            <i class="fas {{ $project->icon }} text-6xl opacity-50"></i>
-                                        </div>
-                                    @endif
-                                    <div class="p-6">
-                                        <h3 class="text-xl font-bold mb-2">{{ $project->title }}</h3>
-                                        <p class="text-gray-400 text-sm mb-4">{{ $project->short_description }}</p>
-                                        @if ($project->technologies)
-                                            <div class="flex flex-wrap gap-2">
-                                                @foreach ($project->technologies as $tech)
-                                                    <span
-                                                        class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">
-                                                        {{ $tech }}
-                                                    </span>
-                                                @endforeach
-                                            </div>
-                                        @endif
-                                    </div>
+         <div class="carousel-container max-w-7xl mx-auto">
+    @if($projects->count() > 0)
+        <div class="carousel-track" id="projectCarousel">
+            @foreach($projects as $project)
+                <div class="carousel-slide">
+                    <a href="{{ route('projects.show', $project->slug) }}" class="block">
+                        <div class="group glass rounded-2xl overflow-hidden hover-lift cursor-pointer h-full">
+                            @if($project->image)
+                                <div class="h-48 overflow-hidden">
+                                    <img src="{{ Storage::url($project->image) }}"
+                                         alt="{{ $project->title }}"
+                                         class="w-full h-full object-cover">
                                 </div>
-                            </a>
+                            @else
+                                <div class="h-48 bg-gradient-to-br from-{{ $project->gradient_from }} to-{{ $project->gradient_to }} flex items-center justify-center">
+                                    <i class="fas {{ $project->icon }} text-6xl opacity-50"></i>
+                                </div>
+                            @endif
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">{{ $project->title }}</h3>
+                                <p class="text-gray-400 text-sm mb-4">{{ $project->short_description }}</p>
+                                @if($project->technologies)
+                                    <div class="flex flex-wrap gap-2">
+                                        @foreach($project->technologies as $tech)
+                                            <span class="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full">
+                                                {{ $tech }}
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-                    @empty
-                        <div class="text-center text-gray-500 py-8">Belum ada project yang ditambahkan</div>
-                    @endforelse
+                    </a>
                 </div>
+            @endforeach
+        </div>
 
-                <!-- Carousel Controls -->
-                @if ($projects->count() > 0)
-                    <div class="flex justify-center items-center gap-4 mt-8">
-                        <button onclick="moveCarousel('project', -1)"
-                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <div id="projectDots" class="flex gap-2"></div>
-                        <button onclick="moveCarousel('project', 1)"
-                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                @endif
-            </div>
+        <!-- Carousel Controls - Only show if there are projects -->
+        <div class="flex justify-center items-center gap-4 mt-8">
+            <button onclick="moveCarousel('project', -1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div id="projectDots" class="flex gap-2"></div>
+            <button onclick="moveCarousel('project', 1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    @else
+        <div class="text-center py-12">
+            <i class="fas fa-folder-open text-5xl text-gray-600 mb-4"></i>
+            <p class="text-gray-500 text-lg">Belum ada project yang ditambahkan</p>
+            @auth
+                <a href="{{ route('admin.projects.create') }}" class="inline-block mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    <i class="fas fa-plus mr-2"></i>Tambah Project
+                </a>
+            @endauth
+        </div>
+    @endif
+</div>
         </div>
     </section>
 
@@ -449,61 +454,66 @@
             </div>
 
             <!-- Testimonials Carousel Section - Replace the static testimonials -->
-            <div class="carousel-container max-w-7xl mx-auto">
-                <div class="carousel-track" id="testimonialCarousel">
-                    @forelse($testimonials as $testimonial)
-                        <div class="carousel-slide">
-                            <div class="glass rounded-2xl p-8 hover-lift h-full">
-                                <div class="flex items-center mb-6">
-                                    @if ($testimonial->avatar)
-                                        <img src="{{ Storage::url($testimonial->avatar) }}"
-                                            alt="{{ $testimonial->name }}"
-                                            class="w-16 h-16 rounded-full object-cover mr-4">
-                                    @else
-                                        <div
-                                            class="w-16 h-16 bg-gradient-to-br from-{{ $testimonial->gradient_from }} to-{{ $testimonial->gradient_to }} rounded-full flex items-center justify-center mr-4 text-2xl font-bold">
-                                            {{ $testimonial->initials }}
-                                        </div>
-                                    @endif
-                                    <div>
-                                        <h4 class="text-xl font-bold">{{ $testimonial->name }}</h4>
-                                        <p class="text-sm text-gray-400">{{ $testimonial->company }}</p>
-                                        @if ($testimonial->position)
-                                            <p class="text-xs text-gray-500">{{ $testimonial->position }}</p>
-                                        @endif
-                                    </div>
+       <div class="carousel-container max-w-7xl mx-auto">
+    @if($testimonials->count() > 0)
+        <div class="carousel-track" id="testimonialCarousel">
+            @foreach($testimonials as $testimonial)
+                <div class="carousel-slide">
+                    <div class="glass rounded-2xl p-8 hover-lift h-full">
+                        <div class="flex items-center mb-6">
+                            @if($testimonial->avatar)
+                                <img src="{{ Storage::url($testimonial->avatar) }}"
+                                     alt="{{ $testimonial->name }}"
+                                     class="w-16 h-16 rounded-full object-cover mr-4">
+                            @else
+                                <div class="w-16 h-16 bg-gradient-to-br from-{{ $testimonial->gradient_from }} to-{{ $testimonial->gradient_to }} rounded-full flex items-center justify-center mr-4 text-2xl font-bold">
+                                    {{ $testimonial->initials }}
                                 </div>
-                                <p class="text-gray-300 italic mb-4">"{{ $testimonial->testimonial }}"</p>
-                                <div class="flex text-yellow-400 text-xl">
-                                    @for ($i = 0; $i < $testimonial->rating; $i++)
-                                        <i class="fas fa-star"></i>
-                                    @endfor
-                                    @for ($i = $testimonial->rating; $i < 5; $i++)
-                                        <i class="far fa-star"></i>
-                                    @endfor
-                                </div>
+                            @endif
+                            <div>
+                                <h4 class="text-xl font-bold">{{ $testimonial->name }}</h4>
+                                <p class="text-sm text-gray-400">{{ $testimonial->company }}</p>
+                                @if($testimonial->position)
+                                    <p class="text-xs text-gray-500">{{ $testimonial->position }}</p>
+                                @endif
                             </div>
                         </div>
-                    @empty
-                        <div class="text-center text-gray-500 py-8">Belum ada testimonial yang ditambahkan</div>
-                    @endforelse
-                </div>
-
-                <!-- Carousel Controls -->
-                @if ($testimonials->count() > 0)
-                    <div class="flex justify-center items-center gap-4 mt-8">
-                        <button onclick="moveCarousel('testimonial', -1)"
-                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <div id="testimonialDots" class="flex gap-2"></div>
-                        <button onclick="moveCarousel('testimonial', 1)"
-                            class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
+                        <p class="text-gray-300 italic mb-4">"{{ $testimonial->testimonial }}"</p>
+                        <div class="flex text-yellow-400 text-xl">
+                            @for($i = 0; $i < $testimonial->rating; $i++)
+                                <i class="fas fa-star"></i>
+                            @endfor
+                            @for($i = $testimonial->rating; $i < 5; $i++)
+                                <i class="far fa-star"></i>
+                            @endfor
+                        </div>
                     </div>
-                @endif
-            </div>
+                </div>
+            @endforeach
+        </div>
+
+        <!-- Carousel Controls - Only show if there are testimonials -->
+        <div class="flex justify-center items-center gap-4 mt-8">
+            <button onclick="moveCarousel('testimonial', -1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div id="testimonialDots" class="flex gap-2"></div>
+            <button onclick="moveCarousel('testimonial', 1)" class="w-12 h-12 glass rounded-full flex items-center justify-center hover:bg-white/10 transition-all">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    @else
+        <div class="text-center py-12">
+            <i class="fas fa-quote-left text-5xl text-gray-600 mb-4"></i>
+            <p class="text-gray-500 text-lg">Belum ada testimonial yang ditambahkan</p>
+            @auth
+                <a href="{{ route('admin.testimonials.create') }}" class="inline-block mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+                    <i class="fas fa-plus mr-2"></i>Tambah Testimonial
+                </a>
+            @endauth
+        </div>
+    @endif
+</div>
 
             <!-- Client Statistics -->
             <div class="grid md:grid-cols-4 gap-8 mt-16 max-w-5xl mx-auto">
@@ -854,106 +864,141 @@
     </footer>
 
     <script>
-        // Carousel functionality
-        const carousels = {
-            project: {
-                currentIndex: 0,
-                track: null,
-                dots: null,
-                totalSlides: 0,
-                slidesPerView: 3
-            },
-            testimonial: {
-                currentIndex: 0,
-                track: null,
-                dots: null,
-                totalSlides: 0,
-                slidesPerView: 3
+    // Carousel functionality - FIXED VERSION
+    const carousels = {
+        project: {
+            currentIndex: 0,
+            track: null,
+            dots: null,
+            totalSlides: 0,
+            slidesPerView: 3
+        },
+        testimonial: {
+            currentIndex: 0,
+            track: null,
+            dots: null,
+            totalSlides: 0,
+            slidesPerView: 3
+        }
+    };
+
+    function initCarousel(type) {
+        const carousel = carousels[type];
+        carousel.track = document.getElementById(`${type}Carousel`);
+        carousel.dots = document.getElementById(`${type}Dots`);
+
+        // Check if elements exist
+        if (!carousel.track || !carousel.dots) {
+            console.log(`${type} carousel elements not found`);
+            return;
+        }
+
+        carousel.totalSlides = carousel.track.children.length;
+
+        // If no slides, don't initialize
+        if (carousel.totalSlides === 0) {
+            console.log(`No ${type} slides found`);
+            return;
+        }
+
+        // Update slides per view based on screen size
+        function updateSlidesPerView() {
+            if (window.innerWidth < 768) {
+                carousel.slidesPerView = 1;
+            } else if (window.innerWidth < 1024) {
+                carousel.slidesPerView = 2;
+            } else {
+                carousel.slidesPerView = 3;
             }
-        };
+        }
 
-        function initCarousel(type) {
-            const carousel = carousels[type];
-            carousel.track = document.getElementById(`${type}Carousel`);
-            carousel.dots = document.getElementById(`${type}Dots`);
-            carousel.totalSlides = carousel.track.children.length;
-
-            // Update slides per view based on screen size
-            function updateSlidesPerView() {
-                if (window.innerWidth < 768) {
-                    carousel.slidesPerView = 1;
-                } else if (window.innerWidth < 1024) {
-                    carousel.slidesPerView = 2;
-                } else {
-                    carousel.slidesPerView = 3;
-                }
-            }
-
+        updateSlidesPerView();
+        window.addEventListener('resize', function() {
             updateSlidesPerView();
-            window.addEventListener('resize', updateSlidesPerView);
-
-            // Create dots
-            carousel.dots.innerHTML = '';
-            const totalDots = Math.ceil(carousel.totalSlides / carousel.slidesPerView);
-            for (let i = 0; i < totalDots; i++) {
-                const dot = document.createElement('button');
-                dot.className = `w-3 h-3 rounded-full transition-all ${i === 0 ? 'bg-blue-500 w-8' : 'bg-gray-600'}`;
-                dot.onclick = () => goToSlide(type, i);
-                carousel.dots.appendChild(dot);
-            }
-        }
-
-        function moveCarousel(type, direction) {
-            const carousel = carousels[type];
-            const maxIndex = Math.ceil(carousel.totalSlides / carousel.slidesPerView) - 1;
-
-            carousel.currentIndex += direction;
-
-            if (carousel.currentIndex < 0) {
-                carousel.currentIndex = maxIndex;
-            } else if (carousel.currentIndex > maxIndex) {
-                carousel.currentIndex = 0;
-            }
-
             updateCarousel(type);
+        });
+
+        // Create dots
+        carousel.dots.innerHTML = '';
+        const totalDots = Math.ceil(carousel.totalSlides / carousel.slidesPerView);
+
+        for (let i = 0; i < totalDots; i++) {
+            const dot = document.createElement('button');
+            dot.className = `w-3 h-3 rounded-full transition-all ${i === 0 ? 'bg-blue-500 w-8' : 'bg-gray-600'}`;
+            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+            dot.onclick = () => goToSlide(type, i);
+            carousel.dots.appendChild(dot);
         }
 
-        function goToSlide(type, index) {
-            carousels[type].currentIndex = index;
-            updateCarousel(type);
+        console.log(`${type} carousel initialized with ${carousel.totalSlides} slides`);
+    }
+
+    function moveCarousel(type, direction) {
+        const carousel = carousels[type];
+
+        if (!carousel.track || carousel.totalSlides === 0) {
+            return;
         }
 
-        function updateCarousel(type) {
-            const carousel = carousels[type];
-            const slideWidth = 100 / carousel.slidesPerView;
-            const offset = -carousel.currentIndex * 100;
+        const maxIndex = Math.ceil(carousel.totalSlides / carousel.slidesPerView) - 1;
 
-            carousel.track.style.transform = `translateX(${offset}%)`;
+        carousel.currentIndex += direction;
 
-            // Update dots
-            Array.from(carousel.dots.children).forEach((dot, index) => {
-                if (index === carousel.currentIndex) {
-                    dot.className = 'w-8 h-3 rounded-full bg-blue-500 transition-all';
-                } else {
-                    dot.className = 'w-3 h-3 rounded-full bg-gray-600 transition-all';
-                }
-            });
+        if (carousel.currentIndex < 0) {
+            carousel.currentIndex = maxIndex;
+        } else if (carousel.currentIndex > maxIndex) {
+            carousel.currentIndex = 0;
         }
 
-        // Initialize carousels
+        updateCarousel(type);
+    }
+
+    function goToSlide(type, index) {
+        carousels[type].currentIndex = index;
+        updateCarousel(type);
+    }
+
+    function updateCarousel(type) {
+        const carousel = carousels[type];
+
+        if (!carousel.track || !carousel.dots) {
+            return;
+        }
+
+        const offset = -carousel.currentIndex * 100;
+        carousel.track.style.transform = `translateX(${offset}%)`;
+
+        // Update dots
+        const dots = carousel.dots.children;
+        Array.from(dots).forEach((dot, index) => {
+            if (index === carousel.currentIndex) {
+                dot.className = 'w-8 h-3 rounded-full bg-blue-500 transition-all';
+            } else {
+                dot.className = 'w-3 h-3 rounded-full bg-gray-600 transition-all';
+            }
+        });
+    }
+
+    // Initialize carousels when DOM is ready
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Initializing carousels...');
         initCarousel('project');
         initCarousel('testimonial');
 
-        // Auto-play carousels
-        setInterval(() => {
-            moveCarousel('project', 1);
-        }, 5000);
+        // Auto-play carousels only if they have slides
+        if (carousels.project.totalSlides > 0) {
+            setInterval(() => {
+                moveCarousel('project', 1);
+            }, 5000);
+        }
 
-        setInterval(() => {
-            moveCarousel('testimonial', 1);
-        }, 6000);
-    </script>
-
+        if (carousels.testimonial.totalSlides > 0) {
+            setInterval(() => {
+                moveCarousel('testimonial', 1);
+            }, 6000);
+        }
+    });
+</script>
     <script>
         document.getElementById('mobile-menu-btn').addEventListener('click', function() {
             const menu = document.getElementById('mobile-menu');
