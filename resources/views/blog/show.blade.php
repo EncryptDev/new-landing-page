@@ -6,7 +6,7 @@
     <title>{{ $post->meta_title ?? $post->title }} | Encrypt Digital Solution</title>
     <meta name="description" content="{{ $post->meta_description ?? $post->excerpt }}">
     <meta name="keywords" content="{{ $post->meta_keywords }}">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
     <script src="https://kit.fontawesome.com/a627a75623.js" crossorigin="anonymous"></script>
     <style>
         @keyframes gradient-shift {
@@ -24,6 +24,11 @@
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        /* Typography override for dark mode */
+        .prose {
+            color: #d1d5db;
+            max-width: none;
+        }
         .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
             color: #fff;
             font-weight: 700;
@@ -37,8 +42,22 @@
         }
         .prose ul, .prose ol {
             color: #d1d5db;
-            margin-left: 1.5rem;
             margin-bottom: 1.5rem;
+        }
+        .prose ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+        .prose ol {
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+        .prose li {
+            color: #d1d5db;
+            margin-bottom: 0.5rem;
+        }
+        .prose li::marker {
+            color: #60a5fa;
         }
         .prose a {
             color: #60a5fa;
@@ -63,6 +82,7 @@
             padding: 0.2rem 0.4rem;
             border-radius: 0.25rem;
             font-size: 0.875rem;
+            color: #e5e7eb;
         }
         .prose pre {
             background-color: rgba(255, 255, 255, 0.05);
@@ -70,6 +90,17 @@
             border-radius: 0.5rem;
             overflow-x: auto;
             margin: 1.5rem 0;
+        }
+        .prose pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        .prose strong {
+            color: #fff;
+            font-weight: 700;
+        }
+        .prose em {
+            color: #e5e7eb;
         }
     </style>
 </head>
