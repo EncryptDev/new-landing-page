@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Testimonial;
 use App\Models\TeamMember;
 use App\Models\BlogPost;
+use App\Models\SaaSProduct;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,6 +18,7 @@ class HomeController extends Controller
         $projects = Project::active()->ordered()->get();
         $testimonials = Testimonial::active()->ordered()->get();
         $teamMembers = TeamMember::active()->ordered()->get();
+        $saasProducts = SaaSProduct::active()->ordered()->get();
 
         // Get latest 3 published blog posts
         $blogPosts = BlogPost::published()
@@ -25,6 +27,6 @@ class HomeController extends Controller
                             ->limit(3)
                             ->get();
 
-        return view('home', compact('companies', 'projects', 'testimonials', 'teamMembers', 'blogPosts'));
+        return view('home', compact('companies', 'projects', 'testimonials', 'teamMembers', 'blogPosts', 'saasProducts'));
     }
 }

@@ -115,6 +115,68 @@
                 min-width: 33.333%;
             }
         }
+
+        /* Ambient orbit keyframes */
+        @keyframes orbit-1 {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(50px, -80px) scale(1.2); }
+            66% { transform: translate(-30px, 40px) scale(0.8); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        @keyframes orbit-2 {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-60px, 60px) scale(0.9); }
+            66% { transform: translate(40px, -50px) scale(1.1); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+        .animate-orbit-1 {
+            animation: orbit-1 20s ease-in-out infinite;
+        }
+        .animate-orbit-2 {
+            animation: orbit-2 25s ease-in-out infinite;
+        }
+
+        /* Modern glow card border & spotlight styling */
+        .glow-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow: hidden;
+        }
+        .glow-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+                rgba(255, 255, 255, 0.06),
+                transparent 40%
+            );
+            z-index: 0;
+            pointer-events: none;
+        }
+        .glow-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), 
+                        0 0 50px -10px rgba(99, 102, 241, 0.15);
+        }
+        
+        /* Shifting color border glow container */
+        .glow-card-wrap {
+            position: relative;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border-radius: 25px;
+            transition: background 0.5s ease;
+        }
+        .glow-card-wrap:hover {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+        }
     </style>
 </head>
 
@@ -133,6 +195,7 @@
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="{{ route('home') }}" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="#our-products" class="text-gray-300 hover:text-white transition-colors">Products</a>
                     <a href="#projects" class="text-gray-300 hover:text-white transition-colors">Projects</a>
                     <a href="#clients" class="text-gray-300 hover:text-white transition-colors">Clients</a>
                     <a href="#team" class="text-gray-300 hover:text-white transition-colors">Team</a>
@@ -155,6 +218,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
             <div class="px-6 py-4 space-y-3">
                 <a href="{{ route('home') }}" class="block text-gray-300 hover:text-white transition-colors">Home</a>
+                <a href="#our-products" class="block text-gray-300 hover:text-white transition-colors">Products</a>
                 <a href="#projects" class="block text-gray-300 hover:text-white transition-colors">Projects</a>
                 <a href="#clients" class="block text-gray-300 hover:text-white transition-colors">Clients</a>
                 <a href="#team" class="block text-gray-300 hover:text-white transition-colors">Team</a>
@@ -362,6 +426,174 @@
                         <div><i class="fas fa-check text-green-400 mr-2"></i>Monitoring 24/7</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our SaaS Products Section -->
+    <section id="our-products" class="py-24 bg-gray-900 relative overflow-hidden border-t border-gray-800/50">
+        <!-- Cosmic Ambient Background Orbs -->
+        <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-blue-600/20 rounded-full filter blur-[150px] pointer-events-none animate-orbit-1"></div>
+        <div class="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-purple-600/20 rounded-full filter blur-[150px] pointer-events-none animate-orbit-2"></div>
+        <div class="absolute top-1/2 left-1/3 w-[500px] h-[500px] bg-pink-500/10 rounded-full filter blur-[130px] pointer-events-none animate-orbit-2" style="animation-delay: -5s;"></div>
+
+        <!-- Fine Grid pattern and noise mask -->
+        <div class="absolute inset-0 grid-pattern opacity-40 pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-20">
+                <div class="inline-block glass px-4 py-2 rounded-full text-sm font-semibold text-blue-300 mb-4 animate-bounce">
+                    <i class="fas fa-cubes mr-2"></i>Proprietary Solutions
+                </div>
+                <h2 class="text-5xl lg:text-7xl font-black mb-6 tracking-tight">
+                    SaaS <span class="text-gradient">Products</span> Kami
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                    Kami hadirkan platform siap pakai berperforma tinggi untuk membantu digitalisasi operasional dan melesatkan pertumbuhan bisnis Anda.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                @forelse($saasProducts as $product)
+                    @php
+                        $isDev = $product->is_under_development;
+                        if ($isDev) {
+                            $gradientFrom = 'from-amber-500';
+                            $gradientTo = 'to-orange-600';
+                            $shadowColor = 'shadow-amber-500/30';
+                            $badgeBg = 'bg-amber-500/10';
+                            $badgeText = 'text-amber-300';
+                            $badgeBorder = 'border-amber-500/30';
+                            $statText = 'text-amber-400';
+                        } else {
+                            if ($loop->index % 2 == 0) {
+                                $gradientFrom = 'from-blue-500';
+                                $gradientTo = 'to-indigo-600';
+                                $shadowColor = 'shadow-blue-500/30';
+                                $badgeBg = 'bg-blue-500/10';
+                                $badgeText = 'text-blue-300';
+                                $badgeBorder = 'border-blue-500/30';
+                                $statText = 'text-blue-400';
+                            } else {
+                                $gradientFrom = 'from-purple-500';
+                                $gradientTo = 'to-pink-600';
+                                $shadowColor = 'shadow-purple-500/30';
+                                $badgeBg = 'bg-purple-500/10';
+                                $badgeText = 'text-purple-300';
+                                $badgeBorder = 'border-purple-500/30';
+                                $statText = 'text-purple-400';
+                            }
+                        }
+                    @endphp
+
+                    <!-- Product Card -->
+                    <div class="glow-card-wrap">
+                        <div class="glow-card group p-8 lg:p-10 h-full flex flex-col justify-between">
+                            <!-- Card Glow Accent -->
+                            <div class="absolute -right-16 -top-16 w-40 h-40 bg-gradient-to-br {{ $gradientFrom }} {{ $gradientTo }} rounded-full filter blur-2xl opacity-20 group-hover:opacity-40 transition-opacity pointer-events-none"></div>
+                            
+                            <div class="relative z-10">
+                                <!-- Header: Logo & Badges -->
+                                <div class="flex items-center justify-between mb-8">
+                                    <div class="flex items-center space-x-4">
+                                        @if($product->logo)
+                                            <div class="w-14 h-14 bg-white p-2 rounded-2xl flex items-center justify-center shadow-lg shadow-white/10 group-hover:scale-110 transition-transform duration-300">
+                                                <img src="{{ Storage::url($product->logo) }}" alt="{{ $product->name }}" class="max-h-full max-w-full object-contain">
+                                            </div>
+                                        @else
+                                            <div class="w-14 h-14 bg-gradient-to-br {{ $gradientFrom }} {{ $gradientTo }} rounded-2xl flex items-center justify-center shadow-lg {{ $shadowColor }} transition-transform duration-300">
+                                                <i class="{{ $product->icon ?? 'fas fa-cubes' }} text-2xl text-white"></i>
+                                            </div>
+                                        @endif
+                                        <div>
+                                            <h3 class="text-2xl font-black tracking-tight text-white transition-colors">{{ $product->name }}</h3>
+                                            <p class="text-xs {{ $statText }} font-medium uppercase tracking-wider">{{ $product->tagline }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex flex-col items-end gap-2">
+                                        @if($product->status)
+                                            <span class="px-3 py-1 {{ $badgeBg }} {{ $badgeText }} text-xs font-bold rounded-full border {{ $badgeBorder }} whitespace-nowrap">
+                                                {{ $product->status }}
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+
+                                <!-- Description -->
+                                <p class="text-gray-300 group-hover:text-white transition-colors duration-300 mb-8 leading-relaxed">
+                                    {{ $product->description }}
+                                </p>
+
+                                <!-- Key Features -->
+                                <div class="space-y-4 mb-8">
+                                    @foreach($product->features_list as $feature)
+                                        @php
+                                            $parts = explode(':', $feature, 2);
+                                        @endphp
+                                        <div class="flex items-start">
+                                            <div class="w-6 h-6 rounded-full {{ $badgeBg }} flex items-center justify-center mr-3 mt-1 flex-shrink-0">
+                                                <i class="fas fa-check text-xs {{ $badgeText }}"></i>
+                                            </div>
+                                            <p class="text-sm text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
+                                                @if(count($parts) === 2)
+                                                    <strong class="text-gray-300 group-hover:text-white transition-colors duration-300">{{ trim($parts[0]) }}:</strong> {{ trim($parts[1]) }}
+                                                @else
+                                                    {{ $feature }}
+                                                @endif
+                                            </p>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <!-- Statistics -->
+                                @if($product->active_users || $product->daily_transactions)
+                                    <div class="grid grid-cols-2 gap-4 p-4 bg-gray-900/80 rounded-2xl mb-8 border border-gray-800/80">
+                                        @if($product->active_users)
+                                            <div>
+                                                <span class="text-xs text-gray-500 block uppercase tracking-wider font-semibold">Active Users</span>
+                                                <span class="text-lg lg:text-xl font-extrabold {{ $statText }}">{{ $product->active_users }}</span>
+                                            </div>
+                                        @endif
+                                        @if($product->daily_transactions)
+                                            <div>
+                                                <span class="text-xs text-gray-500 block uppercase tracking-wider font-semibold">Activity Stat</span>
+                                                <span class="text-lg lg:text-xl font-extrabold {{ $statText }}">{{ $product->daily_transactions }}</span>
+                                            </div>
+                                        @endif
+                                    </div>
+                                @endif
+                            </div>
+
+                            <!-- CTA Buttons -->
+                            <div class="flex flex-wrap gap-4 pt-4 border-t border-gray-800/50 relative z-10">
+                                @if($product->url && !$isDev)
+                                    <a href="{{ $product->url }}" target="_blank" rel="noopener noreferrer" class="flex-1 min-w-[140px] px-6 py-3.5 bg-gradient-to-r {{ $gradientFrom }} {{ $gradientTo }} hover:opacity-90 text-white rounded-xl text-center font-bold transition-all flex items-center justify-center group/btn shadow-lg {{ $shadowColor }}">
+                                        Kunjungi Platform
+                                        <i class="fas fa-external-link-alt ml-2 text-xs group-hover/btn:translate-x-1 transition-transform"></i>
+                                    </a>
+                                @else
+                                    <button disabled class="flex-1 min-w-[140px] px-6 py-3.5 bg-gray-800 text-gray-500 rounded-xl text-center font-bold cursor-not-allowed flex items-center justify-center">
+                                        <i class="fas fa-lock mr-2"></i> Belum Tersedia
+                                    </button>
+                                @endif
+                                
+                                @if($product->demo_url)
+                                    <a href="{{ $product->demo_url }}" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl text-center font-bold transition-all">
+                                        Coba Demo
+                                    </a>
+                                @elseif(!$isDev)
+                                    <a href="https://wa.me/6285171106025?text=Halo%20EncryptDev,%20saya%20tertarik%20dengan%20demo%20{{ urlencode($product->name) }}" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-xl text-center font-bold transition-all">
+                                        Hubungi Kami
+                                    </a>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-span-full text-center py-12">
+                        <p class="text-gray-500">Belum ada produk SaaS yang aktif.</p>
+                    </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -1018,6 +1250,18 @@
                     // Close mobile menu if open
                     document.getElementById('mobile-menu').classList.add('hidden');
                 }
+            });
+        });
+
+        // Mouse Spotlight Effect for SaaS Cards
+        const cards = document.querySelectorAll('.glow-card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
             });
         });
     </script>

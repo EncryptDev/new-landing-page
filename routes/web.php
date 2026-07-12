@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\TestimonialController as AdminTestimonialController;
 use App\Http\Controllers\Admin\TeamMemberController as AdminTeamMemberController;
 use App\Http\Controllers\Admin\BlogPostController as AdminBlogPostController;
+use App\Http\Controllers\Admin\SaaSProductController as AdminSaaSProductController;
 
 
 // Public Routes
@@ -24,6 +25,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () 
     Route::resource('testimonials', AdminTestimonialController::class);
     Route::resource('team-members', AdminTeamMemberController::class);
     Route::resource('blog-posts', AdminBlogPostController::class);
+    Route::resource('saas-products', AdminSaaSProductController::class);
 });
 
 require __DIR__.'/auth.php';

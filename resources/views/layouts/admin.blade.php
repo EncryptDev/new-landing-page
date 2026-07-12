@@ -48,6 +48,11 @@
                     Blog Posts
                 </a>
 
+                <a href="{{ route('admin.saas-products.index') }}" class="flex items-center px-6 py-3 text-gray-300 hover:bg-gray-800 hover:text-white transition-colors {{ request()->routeIs('admin.saas-products.*') ? 'bg-gray-800 text-white' : '' }}">
+                    <i class="fas fa-cubes mr-3"></i>
+                    SaaS Products
+                </a>
+
                 <form method="POST" action="{{ route('logout') }}" class="mt-6">
                     @csrf
                     <button type="submit" class="w-full flex items-center px-6 py-3 text-red-400 hover:bg-gray-800 hover:text-red-300 transition-colors">
